@@ -1,12 +1,12 @@
 
 #include "transistor.h"
 
-static transistor_p *create_transistor (void);
-static void insert_transistor (transistor_p *transistors, transistor_p *n_transistor);
+static transistor_t *create_transistor (void);
+static void insert_transistor (transistor_t *transistors, transistor_t *n_transistor);
 
-transistor_p *get_transistors (int total)
+transistor_t *get_transistors (int total)
 {
-    transistor_p *transistors;
+    transistor_t *transistors;
 
     if (!total) {
         printf("Enter a valid number of transistor.\n");
@@ -21,16 +21,16 @@ transistor_p *get_transistors (int total)
     return transistors;
 }
 
-static transistor_p *create_transistor (void)
+static transistor_t *create_transistor (void)
 {
-    transistor_p *transistor = (transistor_p *) malloc (sizeof(transistor_p));
+    transistor_t *transistor = (transistor_t *) malloc (sizeof(transistor_t));
 
     if (!transistor) {
         printf("Error alloc memory.\n");
         exit(-1);
     }
 
-    memset(transistor, 0, sizeof(transistor_p));
+    memset(transistor, 0, sizeof(transistor_t));
 
     transistor->base      = 0;
     transistor->collector = 0;
@@ -40,9 +40,9 @@ static transistor_p *create_transistor (void)
     return transistor;
 }
 
-static void insert_transistor (transistor_p *transistors, transistor_p *n_transistor)
+static void insert_transistor (transistor_t *transistors, transistor_t *n_transistor)
 {
-    transistor_p *transistor = transistors;
+    transistor_t *transistor = transistors;
 
     if (!transistors || !n_transistor) {
         printf("Invalid transistor input.\n");

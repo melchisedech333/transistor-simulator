@@ -5,16 +5,13 @@
 
 #include "headers.h"
 #include "transistor.h"
+#include "logic-port.h"
 
 int main (int argc, char *argv[])
 {
-    transistor_p *transistors = get_transistors(3);
-    transistor_p *t = NULL;
-    int a = 1;
+    logic_port_t *port = create_port(PORT_XOR);
 
-    for (t=transistors; t != NULL; t=t->next) {
-        printf("Transistor %d\n", a++);
-    }
+    printf("type: %d\n", port->type);
 
     return 0;
 }

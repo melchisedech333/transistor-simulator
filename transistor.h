@@ -15,9 +15,9 @@ typedef struct transistor_s {
 
     // Control of transistor array.
     struct  transistor_s *next;
-} transistor_p;
+} transistor_t;
 
-transistor_p *get_transistors (int total);
+transistor_t *get_transistors (int total);
 
 #endif
 
