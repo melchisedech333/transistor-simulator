@@ -2,19 +2,20 @@
 #include "transistor.h"
 
 static transistor_p *create_transistor (void);
+static void insert_transistor (transistor_p *transistors, transistor_p *n_transistor);
 
 transistor_p *get_transistors (int total)
 {
     transistor_p *transistors;
 
     if (!total) {
-        printf("Enter a valid number of transistor.");
+        printf("Enter a valid number of transistor.\n");
         exit(0);
     }
 
     transistors = create_transistor();
 
-    for (int a=0; a<total; a++)
+    for (int a=1; a<total; a++)
         insert_transistor(transistors, create_transistor());
 
     return transistors;
@@ -43,8 +44,8 @@ static void insert_transistor (transistor_p *transistors, transistor_p *n_transi
 {
     transistor_p *transistor = transistors;
 
-    if (!n_transistor) {
-        printf("Invalid transistor (insert).\n");
+    if (!transistors || !n_transistor) {
+        printf("Invalid transistor input.\n");
         exit(0);
     }
 
