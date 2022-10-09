@@ -42,6 +42,17 @@ void reset_gate (gate_t *gate)
         t->drain  = 0;
         t->source = 0;
     }
+
+    if (gate->subgate) {
+        for (int a=0; a<gate->subcount; a++) {
+            switch (a) {
+                case 0: reset_gate(gate->sub1); break;
+                case 1: reset_gate(gate->sub2); break;
+                case 2: reset_gate(gate->sub3); break;
+                case 3: reset_gate(gate->sub4); break;
+            }
+        }
+    }
 }
 
 static gate_t *create_item (void)

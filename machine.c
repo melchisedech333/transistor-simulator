@@ -16,7 +16,9 @@ static void process_transistor_drain (gate_t *gate, wire_t *w, transistor_t *t);
 static void process_gate_direct (gate_t *gate);
 static void process_gate_elements (gate_t *gate);
 static void prepare_subgate_vdd (gate_t *gate);
-static void prepare_subgate_inputs (gate_t *gate);
+static void prepare_subgate_input (gate_t *gate);
+static void prepare_subgate_ground (gate_t *gate);
+static void prepare_gate_connections (gate_t *gate);
 
 void show_gate_information (gate_t *gate)
 {
@@ -102,16 +104,20 @@ static void process_gate_connection (gate_t *gate, wire_t *w)
     do {                                                                       \
         switch (w->input_id) {                                                 \
             case GATE_SUB1_OUTPUT:                                             \
-                ITEM = gate->sub1->output; \
+                if (gate->sub1->output) \
+                    ITEM = gate->sub1->output; \
                 break; \
             case GATE_SUB2_OUTPUT: \
-                ITEM = gate->sub2->output; \
+                if (gate->sub2->output) \
+                    ITEM = gate->sub2->output; \
                 break; \
             case GATE_SUB3_OUTPUT: \
-                ITEM = gate->sub3->output; \
+                if (gate->sub3->output) \
+                    ITEM = gate->sub3->output; \
                 break; \
             case GATE_SUB4_OUTPUT: \
-                ITEM = gate->sub4->output; \
+                if (gate->sub4->output) \
+                    ITEM = gate->sub4->output; \
                 break; \
         } \
     } while (0)
@@ -119,8 +125,13 @@ static void process_gate_connection (gate_t *gate, wire_t *w)
 static void process_gate_elements (gate_t *gate)
 {
     prepare_subgate_vdd(gate);
-    prepare_subgate_inputs(gate);
-    
+    prepare_subgate_input(gate);
+    prepare_gate_connections(gate);
+    prepare_subgate_ground(gate);
+}
+
+static void prepare_gate_connections (gate_t *gate)
+{
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {
         switch (w->input_id) {
             case GATE_SUB1_OUTPUT: process_gate_direct(gate->sub1); break;
@@ -131,10 +142,13 @@ static void process_gate_elements (gate_t *gate)
 
         switch (w->output_id) {
             case GATE_SUB1_INPUT1:
+                attr_transistor_input(gate->sub1->input1);
                 break;
             case GATE_SUB1_INPUT2:
+                attr_transistor_input(gate->sub1->input2);
                 break;
             case GATE_SUB2_INPUT1:
+                attr_transistor_input(gate->sub2->input1);
                 break;
             case GATE_SUB2_INPUT2:
                 attr_transistor_input(gate->sub2->input2);
@@ -143,6 +157,7 @@ static void process_gate_elements (gate_t *gate)
                 attr_transistor_input(gate->sub3->input1);
                 break;
             case GATE_SUB3_INPUT2:
+                attr_transistor_input(gate->sub3->input2);
                 break;
             case GATE_SUB4_INPUT1:
                 attr_transistor_input(gate->sub4->input1);
@@ -155,7 +170,10 @@ static void process_gate_elements (gate_t *gate)
                 break;
         }
     }
+}
 
+static void prepare_subgate_ground (gate_t *gate)
+{
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {
         switch (w->input_id) {
             case GATE_PIN_GROUND:
@@ -182,7 +200,7 @@ static void process_gate_elements (gate_t *gate)
     }
 }
 
-static void prepare_subgate_inputs (gate_t *gate)
+static void prepare_subgate_input (gate_t *gate)
 {
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {
         if (w->input_id == GATE_PIN_INPUT1 || w->input_id == GATE_PIN_INPUT2) {

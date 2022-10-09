@@ -48,10 +48,12 @@ int initialization (void)
 
     // ***
     gate_t *xor = create_gate(GATE_XOR);
+    
     xor->input1 = 1;
     xor->input2 = 1;
     xor->vdd    = 1;
-    
+    process_gate(xor);
+
     printf("\n%s:\n"
             "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
             "\tVdd...: %d\n\tGround: %d\n",
@@ -59,6 +61,37 @@ int initialization (void)
                 xor->input1, xor->input2, 
                 xor->output, xor->vdd, xor->ground);
 
+    reset_gate(xor);
+    xor->input1 = 0;
+    xor->input2 = 0;
+    xor->vdd    = 1;
+    process_gate(xor);
+
+    printf("\n%s:\n"
+            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
+            "\tVdd...: %d\n\tGround: %d\n",
+                get_gate_name(xor->type),
+                xor->input1, xor->input2, 
+                xor->output, xor->vdd, xor->ground);
+
+    reset_gate(xor);
+    xor->input1 = 0;
+    xor->input2 = 1;
+    xor->vdd    = 1;
+    process_gate(xor);
+
+    printf("\n%s:\n"
+            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
+            "\tVdd...: %d\n\tGround: %d\n",
+                get_gate_name(xor->type),
+                xor->input1, xor->input2, 
+                xor->output, xor->vdd, xor->ground);
+
+
+    reset_gate(xor);
+    xor->input1 = 1;
+    xor->input2 = 0;
+    xor->vdd    = 1;
     process_gate(xor);
 
     printf("\n%s:\n"
