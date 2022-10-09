@@ -3,17 +3,23 @@
 #define _H_LOGIC_PORT_
 
 #include "headers.h"
+#include "transistor.h"
 
-#define PORT_XOR 1
+#define GATE_NOT 1
 
-typedef struct logic_port_s {
+typedef struct gate_s {
+    
+    // Port settings.
     int type;
     int input1;
     int input2;
     int output;
-} logic_port_t;
 
-logic_port_t *create_port (int type);
+    transistor_t *transistors;
+
+} gate_t;
+
+gate_t *create_gate (int type);
 
 #endif
 

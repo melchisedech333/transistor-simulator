@@ -1,34 +1,48 @@
 
 #include "logic-port.h"
 
-static logic_port_t *create_item (void);
+static gate_t *create_item (void);
+static gate_t *create_not_gate (void);
 
-logic_port_t *create_port (int type)
+gate_t *create_gate(int type)
 {
-    logic_port_t *port = create_item();
+    switch (type) {
+        case GATE_NOT:
+            return create_not_gate();
+            break;
+    }
 
-    port->type = type;
-
-    return port;
+    printf("Error creating gate.\n");
+    exit(0);
 }
 
-static logic_port_t *create_item (void)
+static gate_t *create_item (void)
 {
-    logic_port_t *port = (logic_port_t *) malloc (sizeof(logic_port_t));
+    gate_t *gate = (gate_t *) malloc (sizeof(gate_t));
 
-    if (!port) {
+    if (!gate) {
         printf("Error alloc memory.\n");
         exit(-1);
     }
 
-    memset(port, 0, sizeof(logic_port_t));
+    memset(gate, 0, sizeof(gate_t));
 
-    port->type   = 0;
-    port->input1 = 0;
-    port->input2 = 0;
-    port->output = 0;
+    gate->type   = 0;
+    gate->input1 = 0;
+    gate->input2 = 0;
+    gate->output = 0;
 
-    return port;
+    return gate;
+}
+
+static gate_t *create_not_gate (void)
+{
+    gate_t *gate = create_item();
+
+    gate->type = GATE_NOT;
+    gate->transistors = get_transistors(1, 1);
+
+    return gate;
 }
 
 
