@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "transistor.h": "c"
+        "transistor.h": "c",
+        "gate.h": "c",
+        "headers.h": "c"
     }
 }
