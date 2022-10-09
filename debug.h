@@ -5,7 +5,16 @@
 #include "headers.h"
 #include "gate.h"
 
-void show_gate_information (gate_t *gate);
+/**
+ * 0 = Disabled.
+ * 1 = Full debug information.
+ * 2 = Minimal debug information;
+ */
+
+#define DEBUG_MODE 2
+
+void run_debug_mode (gate_t *gate);
+void run_debug_mode_minimal (gate_t *gate);
 
 #endif
 

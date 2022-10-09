@@ -55,6 +55,7 @@ typedef struct gate_s {
 gate_t *create_gate (int type);
 char *get_gate_name (int type);
 void reset_gate (gate_t *gate);
+void run_gate (gate_t *gate);
 
 #endif
 

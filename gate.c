@@ -1,5 +1,7 @@
 
 #include "gate.h"
+#include "debug.h"
+#include "machine.h"
 
 static gate_t *create_item (void);
 static gate_t *create_not_gate (void);
@@ -53,6 +55,17 @@ void reset_gate (gate_t *gate)
             }
         }
     }
+}
+
+void run_gate (gate_t *gate)
+{
+    #if DEBUG_MODE == 1
+        run_debug_mode(gate);
+    #elif DEBUG_MODE == 2
+        run_debug_mode_minimal(gate);
+    #else
+        process_gate(gate);
+    #endif
 }
 
 static gate_t *create_item (void)
