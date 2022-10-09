@@ -195,7 +195,6 @@ static void process_connections (gate_t *gate, wire_t *w, transistor_t *t)
 static void process_transistor_source (gate_t *gate, wire_t *w, transistor_t *t)
 {
     switch (w->output_id) {
-
         case GATE_PIN_GROUND:
             switch (t->type) {
                 case TYPE_N:
