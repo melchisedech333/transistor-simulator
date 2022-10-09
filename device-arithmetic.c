@@ -88,7 +88,25 @@ void device_arithmetic_reset (device_arithmetic_t *device)
 
 void run_device_arithmetic (device_arithmetic_t *device)
 {
-        
+    
+}
+
+char *get_operation_name (int op)
+{
+    char *strs []= {
+        "Iesus Hominum Salvator <3",
+        "SUM (+)",
+        NULL
+    };
+
+    return strs[op];
+}
+
+char get_operation_op (int op)
+{
+    char str[]= "J+";
+
+    return str[op];
 }
 
 

@@ -6,7 +6,9 @@
 
 #define ARITHMETIC_INPUT1           1
 #define ARITHMETIC_INPUT2           2
-#define ARITHMETIC_OPERATION_SUM    3
+
+// Operations support.
+#define ARITHMETIC_OPERATION_SUM    1
 
 /**
  * Deve existir um bit a mais no output, pois o 
@@ -33,6 +35,8 @@ void device_arithmetic_set_data (device_arithmetic_t *device, int input, char *d
 void device_arithmetic_set_operation (device_arithmetic_t *device, int op);
 void device_arithmetic_reset (device_arithmetic_t *device);
 void run_device_arithmetic (device_arithmetic_t *device);
+char *get_operation_name (int op);
+char get_operation_op (int op);
 
 #endif
 
