@@ -32,6 +32,7 @@ device_arithmetic_t *create_device_arithmetic (void);
 void device_arithmetic_set_data (device_arithmetic_t *device, int input, char *data);
 void device_arithmetic_set_operation (device_arithmetic_t *device, int op);
 void device_arithmetic_reset (device_arithmetic_t *device);
+void run_device_arithmetic (device_arithmetic_t *device);
 
 #endif
 

@@ -86,4 +86,9 @@ void device_arithmetic_reset (device_arithmetic_t *device)
     device->output[DEVICE_OUTPUT_SIZE] = '\0';
 }
 
+void run_device_arithmetic (device_arithmetic_t *device)
+{
+        
+}
+
 
