@@ -8,7 +8,56 @@
 #include "transistor.h"
 #include "gate.h"
 
-void process_transistor (transistor_t *t, int type)
+static void run_gate (gate_t *gate);
+static void process_transistor (transistor_t *t, int type);
+static void process_gate_connection (gate_t *gate, wire_t *w);
+static void process_gate (gate_t *gate);
+
+int initialization (void)
+{
+    gate_t *not = create_gate(GATE_NOT);
+
+    not->input1 = 0;
+    not->vdd    = 1;
+
+    run_gate(not);
+
+    return 0;
+}
+
+static void run_gate (gate_t *gate)
+{
+    printf("gate type: %s\n", get_gate_name(gate->type));
+    printf("\ntransistors:\n");
+
+    for (transistor_t *t=gate->transistors; t != NULL; t=t->next)
+        printf("\tid: %d, type: %s, gate: %d, drain: %d, source: %d\n", 
+            t->id, !t->type ? "P-TYPE" : "N-TYPE", t->gate, t->drain, t->source);
+
+    printf("\nwires:\n");
+    for (wire_t *w=gate->wires; w != NULL; w=w->next) 
+        printf("\tinput id: %d, input pin: %d -> output id: %d, output pin: %d\n",
+            w->input_id, w->input_pin, w->output_id, w->output_pin);
+    
+
+    printf("\nProcess gate transistors...\n");
+
+    process_gate(gate);
+
+    printf("\ntransistors:\n");
+    for (transistor_t *t=gate->transistors; t != NULL; t=t->next)
+        printf("\tid: %d, type: %s, gate: %d, drain: %d, source: %d\n", 
+            t->id, !t->type ? "P-TYPE" : "N-TYPE", t->gate, t->drain, t->source);
+
+    printf("\n%s:\n"
+            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
+            "\tVdd...: %d\n\tGround: %d\n",
+                get_gate_name(gate->type),
+                gate->input1, gate->input2, 
+                gate->output, gate->vdd, gate->ground);
+}
+
+static void process_transistor (transistor_t *t, int type)
 {
     switch (type) {
         case TYPE_P:
@@ -35,7 +84,7 @@ void process_transistor (transistor_t *t, int type)
     }
 }
 
-void process_gate_connection (gate_t *gate, wire_t *w)
+static void process_gate_connection (gate_t *gate, wire_t *w)
 {
     for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
         if (w->output_id == t->id) {
@@ -48,7 +97,7 @@ void process_gate_connection (gate_t *gate, wire_t *w)
     }
 }
 
-void process_gate (gate_t *gate)
+static void process_gate (gate_t *gate)
 {
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {
 
@@ -126,45 +175,6 @@ void process_gate (gate_t *gate)
             }
         }
     }
-}
-
-int initialization (void)
-{
-    gate_t *gate = create_gate(GATE_NOT);
-
-    gate->input1 = 1;
-    gate->vdd    = 1;
-
-    printf("gate type: %s\n", get_gate_name(gate->type));
-    printf("\ntransistors:\n");
-
-    for (transistor_t *t=gate->transistors; t != NULL; t=t->next)
-        printf("\tid: %d, type: %s, gate: %d, drain: %d, source: %d\n", 
-            t->id, !t->type ? "P-TYPE" : "N-TYPE", t->gate, t->drain, t->source);
-
-    printf("\nwires:\n");
-    for (wire_t *w=gate->wires; w != NULL; w=w->next) 
-        printf("\tinput id: %d, input pin: %d -> output id: %d, output pin: %d\n",
-            w->input_id, w->input_pin, w->output_id, w->output_pin);
-    
-
-    printf("\nProcess gate transistors...\n");
-
-    process_gate(gate);
-
-    printf("\ntransistors:\n");
-    for (transistor_t *t=gate->transistors; t != NULL; t=t->next)
-        printf("\tid: %d, type: %s, gate: %d, drain: %d, source: %d\n", 
-            t->id, !t->type ? "P-TYPE" : "N-TYPE", t->gate, t->drain, t->source);
-
-    printf("\n%s:\n"
-            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
-            "\tVdd...: %d\n\tGround: %d\n",
-                get_gate_name(gate->type),
-                gate->input1, gate->input2, 
-                gate->output, gate->vdd, gate->ground);
-
-    return 0;
 }
 
 
