@@ -54,7 +54,7 @@ static gate_t *create_not_gate (void)
 static void prepare_gate_wires (gate_t *gate)
 {
     wire_t *w = gate->wires;
-    
+
     for (int item=0; w != NULL; w=w->next, item++) {
         switch (item) {
             case 0:
@@ -86,14 +86,13 @@ static void prepare_gate_wires (gate_t *gate)
                 w->input_pin = PIN_TRANSISTOR_DRAIN;
                 w->output_id = GATE_PIN_OUTPUT;
                 break;
-
+            
             case 5:
                 w->input_id  = get_first_transistor_id(gate->transistors, TYPE_N);
                 w->input_pin = PIN_TRANSISTOR_SOURCE;
                 w->output_id = GATE_PIN_GROUND;
                 break;
         }
-
     }
 }
 
