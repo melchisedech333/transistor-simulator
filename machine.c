@@ -12,6 +12,9 @@ static void test_gate (gate_t *gate);
 static void process_transistor (transistor_t *t, int type);
 static void process_gate_connection (gate_t *gate, wire_t *w);
 static void process_gate (gate_t *gate);
+static void process_connections (gate_t *gate, wire_t *w, transistor_t *t);
+static void process_transistor_source (gate_t *gate, wire_t *w, transistor_t *t);
+static void process_transistor_drain (gate_t *gate, wire_t *w, transistor_t *t);
 
 int initialization (void)
 {
@@ -169,66 +172,79 @@ static void process_gate (gate_t *gate)
         // E conectarem-se no output, ground, ou um gate de algum outro transistor. 
         else {
             for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
-                if (w->input_id == t->id) {
-                    switch (w->input_pin) {
-                        case PIN_TRANSISTOR_SOURCE:
-                            switch (w->output_id) {
-
-                                case GATE_PIN_GROUND:
-                                    switch (t->type) {
-                                        case TYPE_N:
-                                            process_transistor(t, TYPE_N);
-                                            gate->ground = t->source;
-                                            break;
-                                    }
-                                    break;
-
-                                default:
-                                    switch (t->type) {
-                                        case TYPE_N:
-                                            process_transistor(t, TYPE_N);
-                                     
-                                            for (transistor_t *t2=gate->transistors; t2 != NULL; t2=t2->next) {
-                                                if (w->output_id == t2->id) {
-                                                    switch (t2->type) {
-                                                        case TYPE_N:
-                                                            t2->drain = t->source;
-                                                            break;
-                                                    }
-                                                }
-                                            }
-                                            break;
-                                    }
-                                    break;
-                            }
-                            break;
-
-                        case PIN_TRANSISTOR_DRAIN:
-                            switch (w->output_id) {
-
-                                case GATE_PIN_OUTPUT:
-                                    switch (t->type) {
-                                        case TYPE_P:
-                                            process_transistor(t, TYPE_P);
-                                            
-                                            if (t->drain)
-                                                gate->output = t->drain;
-                                            break;
-                                            
-                                        case TYPE_N:
-                                            t->drain = gate->output;
-                                            break;
-                                    }
-                                    break;
-
-                                case GATE_PIN_GROUND: break;
-                                default: break;
-                            }
-                            break;
-                    }
-                }
+                if (w->input_id == t->id)
+                   process_connections(gate, w, t);
             }
         }
+    }
+}
+
+static void process_connections (gate_t *gate, wire_t *w, transistor_t *t)
+{
+    switch (w->input_pin) {
+        case PIN_TRANSISTOR_SOURCE:
+            process_transistor_source(gate, w, t);
+            break;
+
+        case PIN_TRANSISTOR_DRAIN:
+            process_transistor_drain(gate, w, t);
+            break;
+    }
+}
+
+static void process_transistor_source (gate_t *gate, wire_t *w, transistor_t *t)
+{
+    switch (w->output_id) {
+
+        case GATE_PIN_GROUND:
+            switch (t->type) {
+                case TYPE_N:
+                    process_transistor(t, TYPE_N);
+                    gate->ground = t->source;
+                    break;
+            }
+            break;
+
+        default:
+            switch (t->type) {
+                case TYPE_N:
+                    process_transistor(t, TYPE_N);
+                
+                    for (transistor_t *t2=gate->transistors; t2 != NULL; t2=t2->next) {
+                        if (w->output_id == t2->id) {
+                            switch (t2->type) {
+                                case TYPE_N:
+                                    t2->drain = t->source;
+                                    break;
+                            }
+                        }
+                    }
+                    break;
+            }
+            break;
+    }
+}
+
+static void process_transistor_drain (gate_t *gate, wire_t *w, transistor_t *t)
+{
+    switch (w->output_id) {
+        case GATE_PIN_OUTPUT:
+            switch (t->type) {
+                case TYPE_P:
+                    process_transistor(t, TYPE_P);
+                    
+                    if (t->drain)
+                        gate->output = t->drain;
+                    break;
+                    
+                case TYPE_N:
+                    t->drain = gate->output;
+                    break;
+            }
+            break;
+
+        case GATE_PIN_GROUND: break;
+        default: break;
     }
 }
 
