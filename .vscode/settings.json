@@ -4,6 +4,7 @@
         "gate.h": "c",
         "headers.h": "c",
         "wire.h": "c",
-        "gate-construction.h": "c"
+        "gate-construction.h": "c",
+        "math.h": "c"
     }
 }

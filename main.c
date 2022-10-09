@@ -1,62 +1,22 @@
 
 #include "headers.h"
-#include "gate-machine.h"
+#include "utils.h"
+#include "devices.h"
 
 int initialization (void)
 {
-    // ***
-    gate_t *not = create_gate(GATE_NOT);
+    device_arithmetic_t *device = create_device_arithmetic();
+    device_arithmetic_reset(device);
 
-    not->input1 = 0;
-    run_gate(not);
+    // Configure device.
+    device_arithmetic_set_data(device, ARITHMETIC_INPUT1, "101");
+    device_arithmetic_set_data(device, ARITHMETIC_INPUT2, "011");
+    device_arithmetic_set_operation(device, ARITHMETIC_OPERATION_SUM);
 
-    reset_gate(not);
-    not->input1 = 1;
-    run_gate(not);
+    run_device_arithmetic(device);
 
-    // ***
-    gate_t *nand = create_gate(GATE_NAND);
-
-    nand->input1 = 0;
-    nand->input2 = 0;
-    run_gate(nand);
-
-    reset_gate(nand);
-    nand->input1 = 1;
-    nand->input2 = 0;
-    run_gate(nand);
-
-    reset_gate(nand);
-    nand->input1 = 0;
-    nand->input2 = 1;
-    run_gate(nand);
-
-    reset_gate(nand);
-    nand->input1  = 1;
-    nand->input2  = 1;
-    run_gate(nand);
-
-    // ***
-    gate_t *xor = create_gate(GATE_XOR);
-    
-    xor->input1 = 1;
-    xor->input2 = 1;
-    run_gate(xor);
-
-    reset_gate(xor);
-    xor->input1 = 0;
-    xor->input2 = 0;
-    run_gate(xor);
-
-    reset_gate(xor);
-    xor->input1 = 0;
-    xor->input2 = 1;
-    run_gate(xor);
-
-    reset_gate(xor);
-    xor->input1 = 1;
-    xor->input2 = 0;
-    run_gate(xor);
+    printf("%s + %s = %s\n", device->input1, device->input2, device->output);
+    printf("%d + %d = %d\n", bindec(device->input1), bindec(device->input2), bindec(device->output));
 
     return 0;
 }
