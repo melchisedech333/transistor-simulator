@@ -7,6 +7,6 @@ Portas lógicas implementadas:
 - NAND
 - XOR (composta por portas NAND)
 
-Obs: internamente a aplicação ativa a flag <b>Vdd</b>, significando que há energia no circuito. Onde é conectado um fio do Power Supply ao transistor (no source para P-TYPE, no drain para N-TYPE). Para os casos onde é feito o uso de portas já existentes para criar outras (como a XOR), o Vdd do gate em questão é conectado ao Vdd de cada uma das sub-portas, fazendo assim com que a energia percorra os circuitos caminhando em direção ao Ground.
+Obs: internamente a aplicação ativa a flag <b>Vdd</b>, significando que há energia no circuito. Onde é conectado um fio do Power Supply ao transistor (no source para P-TYPE, no drain para N-TYPE). Para os casos onde é feito o uso de portas já existentes para criar outras (como a XOR), o Vdd da porta em questão é conectado ao Vdd de cada uma das sub-portas, fazendo assim com que a energia percorra os circuitos caminhando em direção ao Ground.
 
 
