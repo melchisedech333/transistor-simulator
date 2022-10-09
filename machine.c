@@ -10,10 +10,12 @@
 
 static void process_transistor (transistor_t *t, int type);
 static void process_gate_connection (gate_t *gate, wire_t *w);
-static void process_gate (gate_t *gate);
 static void process_connections (gate_t *gate, wire_t *w, transistor_t *t);
 static void process_transistor_source (gate_t *gate, wire_t *w, transistor_t *t);
 static void process_transistor_drain (gate_t *gate, wire_t *w, transistor_t *t);
+static void process_gate_direct (gate_t *gate);
+static void process_gate_elements (gate_t *gate);
+static void prepare_subgate_vdd (gate_t *gate);
 
 void show_gate_information (gate_t *gate)
 {
@@ -28,7 +30,6 @@ void show_gate_information (gate_t *gate)
     for (wire_t *w=gate->wires; w != NULL; w=w->next) 
         printf("\tinput id: %d, input pin: %d -> output id: %d, output pin: %d\n",
             w->input_id, w->input_pin, w->output_id, w->output_pin);
-    
 
     printf("\nProcess gate transistors...\n");
     process_gate(gate);
@@ -46,6 +47,14 @@ void show_gate_information (gate_t *gate)
                 gate->output, gate->vdd, gate->ground);
 
     printf("\n+++++++++++++++++++++++++++\n\n");
+}
+
+void process_gate (gate_t *gate)
+{
+    if (gate->subgate) 
+        process_gate_elements(gate);
+    else
+        process_gate_direct(gate);
 }
 
 static void process_transistor (transistor_t *t, int type)
@@ -88,7 +97,63 @@ static void process_gate_connection (gate_t *gate, wire_t *w)
     }
 }
 
-static void process_gate (gate_t *gate)
+static void process_gate_elements (gate_t *gate)
+{
+    prepare_subgate_vdd(gate);
+    
+    gate_t *c_gate = NULL;
+
+    for (int a=0; a<gate->subcount; a++) {
+        switch (a) {
+            case 0:
+                c_gate = gate->sub1;
+                break;
+            case 1:
+                c_gate = gate->sub2;
+                break;
+            case 2:
+                c_gate = gate->sub3;
+                break;
+            case 3:
+                c_gate = gate->sub4;
+                break;
+        }
+
+        if (!c_gate)
+            continue;
+
+        // Process sub-gate.
+        printf("gate type: %s\n", get_gate_name(c_gate->type));
+
+        c_gate = NULL;
+    }
+}
+
+static void prepare_subgate_vdd (gate_t *gate)
+{
+    for (wire_t *w=gate->wires; w != NULL; w=w->next) {
+        
+        // O Vdd sempre se conectada com os Vdd dos sub-gates. 
+        if (w->input_id == GATE_PIN_VDD) {
+            switch (w->output_id) {
+                case GATE_SUB1_VDD:
+                    gate->sub1->vdd = gate->vdd;
+                    break;
+                case GATE_SUB2_VDD:
+                    gate->sub2->vdd = gate->vdd;
+                    break;
+                case GATE_SUB3_VDD:
+                    gate->sub3->vdd = gate->vdd;
+                    break;
+                case GATE_SUB4_VDD:
+                    gate->sub4->vdd = gate->vdd;
+                    break;
+            }
+        }
+    }
+}
+
+static void process_gate_direct (gate_t *gate)
 {
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {
 

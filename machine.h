@@ -6,6 +6,7 @@
 #include "gate.h"
 
 void show_gate_information (gate_t *gate);
+void process_gate (gate_t *gate);
 
 #endif
 

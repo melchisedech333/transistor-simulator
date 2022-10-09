@@ -25,11 +25,14 @@
  * Supported gates.
  */
 
-#define GATE_NOT             1
-#define GATE_NAND            2
+#define GATE_NOT    1
+#define GATE_NAND   2
+#define GATE_XOR    3
 
 typedef struct gate_s {
     int type;
+    int subgate;    // Gates created using existing ones.
+    int subcount;   // Number of sub-gates.
 
     // Gate interface.
     int input1;
@@ -42,6 +45,11 @@ typedef struct gate_s {
 
     transistor_t *transistors;
     wire_t *wires;
+
+    struct gate_s *sub1;
+    struct gate_s *sub2;
+    struct gate_s *sub3;
+    struct gate_s *sub4;
 } gate_t;
 
 gate_t *create_gate (int type);
