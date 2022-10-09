@@ -4,7 +4,7 @@
 
 int initialization (void)
 {
-    // // ***
+    // ***
     gate_t *not = create_gate(GATE_NOT);
 
     not->input1 = 0;
@@ -14,7 +14,7 @@ int initialization (void)
     not->input1 = 1;
     run_gate(not);
 
-    // // ***
+    // ***
     gate_t *nand = create_gate(GATE_NAND);
 
     nand->input1 = 0;
