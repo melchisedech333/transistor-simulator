@@ -8,7 +8,6 @@
 #include "transistor.h"
 #include "gate.h"
 
-static void test_gate (gate_t *gate);
 static void process_transistor (transistor_t *t, int type);
 static void process_gate_connection (gate_t *gate, wire_t *w);
 static void process_gate (gate_t *gate);
@@ -16,54 +15,7 @@ static void process_connections (gate_t *gate, wire_t *w, transistor_t *t);
 static void process_transistor_source (gate_t *gate, wire_t *w, transistor_t *t);
 static void process_transistor_drain (gate_t *gate, wire_t *w, transistor_t *t);
 
-int initialization (void)
-{
-    // ***
-    gate_t *not = create_gate(GATE_NOT);
-
-    not->input1 = 0;
-    not->vdd    = 1;
-    test_gate(not);
-
-    reset_gate(not);
-
-    not->input1 = 1;
-    not->vdd    = 1;
-    test_gate(not);
-
-    // ***
-    gate_t *nand = create_gate(GATE_NAND);
-
-    nand->input1 = 0;
-    nand->input2 = 0;
-    nand->vdd    = 1;
-    test_gate(nand);
-
-    reset_gate(nand);
-
-    nand->input1 = 1;
-    nand->input2 = 0;
-    nand->vdd    = 1;
-    test_gate(nand);
-
-    reset_gate(nand);
-
-    nand->input1 = 0;
-    nand->input2 = 1;
-    nand->vdd    = 1;
-    test_gate(nand);
-
-    reset_gate(nand);
-
-    nand->input1  = 1;
-    nand->input2  = 1;
-    nand->vdd     = 1;
-    test_gate(nand);
-
-    return 0;
-}
-
-static void test_gate (gate_t *gate)
+void show_gate_information (gate_t *gate)
 {
     printf("gate type: %s\n", get_gate_name(gate->type));
     printf("\ntransistors:\n");
@@ -79,7 +31,6 @@ static void test_gate (gate_t *gate)
     
 
     printf("\nProcess gate transistors...\n");
-
     process_gate(gate);
 
     printf("\ntransistors:\n");
