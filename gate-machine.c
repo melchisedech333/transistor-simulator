@@ -38,6 +38,10 @@ void process_gate (gate_t *gate)
         process_gate_direct(gate);
 }
 
+/**
+ * MOSFET transistors P-TYPE and N-TYPE.
+ */
+
 static void process_transistor (transistor_t *t, int type)
 {
     switch (type) {

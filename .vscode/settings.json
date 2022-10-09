@@ -3,6 +3,7 @@
         "transistor.h": "c",
         "gate.h": "c",
         "headers.h": "c",
-        "wire.h": "c"
+        "wire.h": "c",
+        "gate-construction.h": "c"
     }
 }
