@@ -1,8 +1,8 @@
 #!/bin/bash
 
 gcc -c transistor.c -o transistor.o
-gcc -c logic-port.c -o logic-port.o
+gcc -c gate.c -o gate.o
 
-gcc machine.c transistor.o logic-port.o -o machine
+gcc machine.c transistor.o gate.o -o machine
 
 

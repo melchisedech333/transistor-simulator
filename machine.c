@@ -5,7 +5,7 @@
 
 #include "headers.h"
 #include "transistor.h"
-#include "logic-port.h"
+#include "gate.h"
 
 int main (int argc, char *argv[])
 {

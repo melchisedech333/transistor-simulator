@@ -1,5 +1,5 @@
 
-#include "logic-port.h"
+#include "gate.h"
 
 static gate_t *create_item (void);
 static gate_t *create_not_gate (void);
