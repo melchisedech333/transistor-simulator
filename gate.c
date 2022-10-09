@@ -59,6 +59,9 @@ void reset_gate (gate_t *gate)
 
 void run_gate (gate_t *gate)
 {
+    // Enable Vdd (Volts).
+    gate->vdd = 1;
+
     #if DEBUG_MODE == 1
         run_debug_mode(gate);
     #elif DEBUG_MODE == 2
