@@ -27,10 +27,12 @@ static gate_t *create_item (void)
 
     memset(gate, 0, sizeof(gate_t));
 
-    gate->type   = 0;
-    gate->input1 = 0;
-    gate->input2 = 0;
-    gate->output = 0;
+    gate->type          = 0;
+    gate->input1        = 0;
+    gate->input2        = 0;
+    gate->output        = 0;
+    gate->transistors   = NULL;
+    gate->wires         = NULL;
 
     return gate;
 }
@@ -41,6 +43,7 @@ static gate_t *create_not_gate (void)
 
     gate->type        = GATE_NOT;
     gate->transistors = get_transistors(1, 1);
+    gate->wires       = get_wires(5);
 
     return gate;
 }
