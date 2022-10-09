@@ -17,6 +17,21 @@ gate_t *create_gate(int type)
     exit(0);
 }
 
+void reset_gate (gate_t *gate)
+{
+    gate->input1 = 0;
+    gate->input2 = 0;
+    gate->output = 0;
+    gate->vdd    = 0;
+    gate->ground = 0;
+
+    for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
+        t->gate   = 0;
+        t->drain  = 0;
+        t->source = 0;
+    }
+}
+
 static gate_t *create_item (void)
 {
     gate_t *gate = (gate_t *) malloc (sizeof(gate_t));
@@ -53,11 +68,7 @@ static gate_t *create_not_gate (void)
     add_wire(first_n(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
     add_wire(first_n(), PIN_TRANSISTOR_SOURCE, GATE_PIN_GROUND, 0);
     
-    // Remote first item.
-    wire_t *w = gate->wires;
-    gate->wires = w->next;
-    free(w);
-
+    remove_first_wire();
     return gate;
 }
 
@@ -65,7 +76,7 @@ char *get_gate_name (int type)
 {
     char *strs []= {
         "Iesus Hominum Salvator <3",
-        "GATE_NOT",
+        "NOT-GATE",
         NULL
     };
 

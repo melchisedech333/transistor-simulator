@@ -6,13 +6,20 @@
 #include "transistor.h"
 #include "wire.h"
 
-#define add_wire(INP_ID, INP_PIN, OUT_ID, OUT_PIN)                              \
-    do {                                                                        \
-        add_wire_item(gate->wires, INP_ID, INP_PIN, OUT_ID, OUT_PIN);           \
+#define add_wire(INP_ID, INP_PIN, OUT_ID, OUT_PIN)                             \
+    do {                                                                       \
+        add_wire_item(gate->wires, INP_ID, INP_PIN, OUT_ID, OUT_PIN);          \
     } while (0)
 
 #define first_p() get_first_transistor_id(gate->transistors, TYPE_P)
 #define first_n() get_first_transistor_id(gate->transistors, TYPE_N)
+
+#define remove_first_wire()                                                    \
+    do {                                                                       \
+        wire_t *w = gate->wires;                                               \
+        gate->wires = w->next;                                                 \
+        free(w);                                                               \
+    } while (0)
 
 /**
  * Supported gates.
@@ -38,6 +45,7 @@ typedef struct gate_s {
 
 gate_t *create_gate (int type);
 char *get_gate_name (int type);
+void reset_gate (gate_t *gate);
 
 #endif
 

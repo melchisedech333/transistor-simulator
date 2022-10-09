@@ -8,24 +8,34 @@
 #include "transistor.h"
 #include "gate.h"
 
-static void run_gate (gate_t *gate);
+static void test_gate (gate_t *gate);
 static void process_transistor (transistor_t *t, int type);
 static void process_gate_connection (gate_t *gate, wire_t *w);
 static void process_gate (gate_t *gate);
 
 int initialization (void)
 {
+    // ***
     gate_t *not = create_gate(GATE_NOT);
 
     not->input1 = 0;
     not->vdd    = 1;
 
-    run_gate(not);
+    test_gate(not);
+    reset_gate(not);
+
+    not->input1 = 1;
+    not->vdd    = 1;
+
+    test_gate(not);
+
+    // ***
+    
 
     return 0;
 }
 
-static void run_gate (gate_t *gate)
+static void test_gate (gate_t *gate)
 {
     printf("gate type: %s\n", get_gate_name(gate->type));
     printf("\ntransistors:\n");
