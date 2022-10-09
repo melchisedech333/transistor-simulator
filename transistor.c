@@ -39,6 +39,21 @@ transistor_t *get_transistors (int total_p, int total_n)
     return transistors;
 }
 
+int get_first_transistor_id (transistor_t *transistors, int type)
+{
+    transistor_t *t = transistors;
+    int id = 0;
+
+    for (; t != NULL; t=t->next) {
+        if (t->type == type) {
+            id = t->id;
+            break;
+        }
+    }
+
+    return id;
+}
+
 static transistor_t *create_transistor (int type)
 {
     transistor_t *transistor = (transistor_t *) malloc (sizeof(transistor_t));

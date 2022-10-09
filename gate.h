@@ -12,27 +12,17 @@
 
 #define GATE_NOT             1
 
-/**
- * Gate inteface IDs:
- * 
- *   0 -> output
- *  -1 -> input1
- *  -2 -> input2
- *  -3 -> input3
- *  -N -> inputN
- * 
- * Note: transistors use positive numbers (>=1).
- */
-
-#define GATE_PIN_OUTPUT      0
-#define GATE_PIN_INPUT1     -1
-#define GATE_PIN_INPUT2     -2
-
 typedef struct gate_s {
     int type;
+
+    // Gate interface.
     int input1;
     int input2;
     int output;
+
+    // Circuit interface.
+    int vdd;
+    int ground;
 
     transistor_t *transistors;
     wire_t *wires;

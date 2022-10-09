@@ -42,7 +42,7 @@ static wire_t *create_wire (void)
     wire->input_pin  = 0;
     wire->output_id  = 0;
     wire->output_pin = 0;
-    wire->next   = NULL;
+    wire->next       = NULL;
 
     return wire;
 }

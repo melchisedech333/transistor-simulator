@@ -44,7 +44,7 @@ static gate_t *create_not_gate (void)
 
     gate->type        = GATE_NOT;
     gate->transistors = get_transistors(1, 1);
-    gate->wires       = get_wires(5);
+    gate->wires       = get_wires(6);
 
     prepare_gate_wires(gate);
 
@@ -55,11 +55,45 @@ static void prepare_gate_wires (gate_t *gate)
 {
     wire_t *w = gate->wires;
     
-    for (; w != NULL; w=w->next) {
-        
+    for (int item=0; w != NULL; w=w->next, item++) {
+        switch (item) {
+            case 0:
+                w->input_id   = GATE_PIN_VDD;
+                w->output_id  = get_first_transistor_id(gate->transistors, TYPE_P);
+                w->output_pin = PIN_TRANSISTOR_SOURCE;
+                break;
 
-        printf("\tinput id: %d, input pin: %d -> output id: %d, output pin: %d\n",
-            w->input_id, w->input_pin, w->output_id, w->output_pin);
+            case 1:
+                w->input_id   = GATE_PIN_INPUT1;
+                w->output_id  = get_first_transistor_id(gate->transistors, TYPE_P);
+                w->output_pin = PIN_TRANSISTOR_GATE;
+                break;
+
+            case 2:
+                w->input_id  = get_first_transistor_id(gate->transistors, TYPE_P);
+                w->input_pin = PIN_TRANSISTOR_DRAIN;
+                w->output_id = GATE_PIN_OUTPUT;
+                break;
+
+            case 3:
+                w->input_id   = GATE_PIN_INPUT1;
+                w->output_id  = get_first_transistor_id(gate->transistors, TYPE_N);
+                w->output_pin = PIN_TRANSISTOR_GATE;
+                break;
+
+            case 4:
+                w->input_id  = get_first_transistor_id(gate->transistors, TYPE_N);
+                w->input_pin = PIN_TRANSISTOR_DRAIN;
+                w->output_id = GATE_PIN_OUTPUT;
+                break;
+
+            case 5:
+                w->input_id  = get_first_transistor_id(gate->transistors, TYPE_N);
+                w->input_pin = PIN_TRANSISTOR_SOURCE;
+                w->output_id = GATE_PIN_GROUND;
+                break;
+        }
+
     }
 }
 

@@ -13,11 +13,12 @@ typedef struct transistor_s {
     int gate;
     int drain;
     int source;
-    
+
     struct  transistor_s *next;
 } transistor_t;
 
 transistor_t *get_transistors (int total_p, int total_n);
+int get_first_transistor_id (transistor_t *transistors, int type);
 
 #endif
 
