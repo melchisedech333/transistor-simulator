@@ -39,7 +39,7 @@ static gate_t *create_not_gate (void)
 {
     gate_t *gate = create_item();
 
-    gate->type = GATE_NOT;
+    gate->type        = GATE_NOT;
     gate->transistors = get_transistors(1, 1);
 
     return gate;

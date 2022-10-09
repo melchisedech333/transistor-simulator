@@ -6,8 +6,8 @@ static void insert_transistor (transistor_t *transistors, transistor_t *n_transi
 
 transistor_t *get_transistors (int total_p, int total_n)
 {
-    transistor_t *transistors = NULL;
-    int i_total_p = total_p, i_total_n = total_n;
+    transistor_t *transistors = NULL, *transistor = NULL;
+    int index = 0, i_total_p = total_p, i_total_n = total_n;
 
     if (!i_total_p && !i_total_n) {
         printf("Enter a valid number of transistor.\n");
@@ -16,17 +16,25 @@ transistor_t *get_transistors (int total_p, int total_n)
 
     if (i_total_p) {
         transistors = create_transistor(TYPE_P);
+        transistors->id = index++;
         i_total_p--;
     } else if (i_total_n) {
         transistors = create_transistor(TYPE_N);
+        transistors->id = index++;
         i_total_n--;
     }
 
-    for (int a=0; a<i_total_p; a++)
-        insert_transistor(transistors, create_transistor(TYPE_P));
+    for (int a=0; a<i_total_p; a++) {
+        transistor = create_transistor(TYPE_P);
+        transistor->id = index++;
+        insert_transistor(transistors, transistor);
+    }
 
-    for (int a=0; a<i_total_n; a++)
-        insert_transistor(transistors, create_transistor(TYPE_N));
+    for (int a=0; a<i_total_n; a++) {
+        transistor = create_transistor(TYPE_N);
+        transistor->id = index++;
+        insert_transistor(transistors, transistor);
+    }
 
     return transistors;
 }
@@ -43,6 +51,7 @@ static transistor_t *create_transistor (int type)
     memset(transistor, 0, sizeof(transistor_t));
 
     transistor->type   = type;
+    transistor->id     = 0;
     transistor->gate   = 0;
     transistor->drain  = 0;
     transistor->source = 0;

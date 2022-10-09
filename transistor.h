@@ -8,11 +8,11 @@
 #define TYPE_N 1
 
 typedef struct transistor_s {
+    int id;
     int type;       // 0: N, 1: P.
     int gate;
     int drain;
     int source;
-
     struct  transistor_s *next;
 } transistor_t;
 

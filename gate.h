@@ -7,6 +7,14 @@
 
 #define GATE_NOT 1
 
+typedef struct wires_s {
+    int index;
+    int input;
+    int output;
+
+    struct wires_s *next;    
+} wires_t;
+
 typedef struct gate_s {
     
     // Port settings.
@@ -16,6 +24,7 @@ typedef struct gate_s {
     int output;
 
     transistor_t *transistors;
+    wires_t *wires;
 
 } gate_t;
 
