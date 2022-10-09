@@ -8,6 +8,33 @@
 #include "transistor.h"
 #include "gate.h"
 
+void process_transistor (transistor_t *t, int type)
+{
+    switch (type) {
+        case TYPE_P:
+            if (t->source == 1 && t->gate == 1)
+                t->drain = 0;
+            else if (t->source == 1 && t->gate == 0)
+                t->drain = 1;
+            else if (t->source == 0 && t->gate == 0)
+                t->drain = 0;
+            else if (t->source == 0 && t->gate == 1)
+                t->drain = 0;
+            break;
+
+        case TYPE_N:
+            if (t->gate == 1 && t->drain == 1)
+                t->source = 1;
+            else if (t->gate == 1 && t->drain == 0)
+                t->source = 0;
+            else if (t->gate == 0 && t->drain == 1)
+                t->source = 0;
+            else if (t->gate == 0 && t->drain == 0)
+                t->source = 0;
+            break;
+    }
+}
+
 int initialization (void)
 {
     gate_t *gate = create_gate(GATE_NOT);
@@ -37,65 +64,41 @@ int initialization (void)
 
         for (wire_t *w=gate->wires; w != NULL; w=w->next) {
 
-            // Gate entry point.
+            // O Vdd apenas se conectará em alguma porta de source ou dreno.
             if (w->input_id == GATE_PIN_VDD) {
-                switch (w->output_id) {
-                    case GATE_PIN_OUTPUT:  break;
-                    case GATE_PIN_INPUT1:  break;
-                    case GATE_PIN_INPUT2:  break;
-                    case GATE_PIN_VDD:     break;
-                    case GATE_PIN_GROUND:  break;
-                    default:
-                        if (gate->vdd == 1) {
-                            for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
-                                if (w->output_id == t->id) {
-                                    switch (w->output_pin) {
-                                        case PIN_TRANSISTOR_GATE:
-                                            t->gate = 1;
-                                            break;
-                                        case PIN_TRANSISTOR_SOURCE:
-                                            t->source = 1;
-                                            break;
-                                        case PIN_TRANSISTOR_DRAIN:
-                                            t->drain = 1;
-                                            break;
-                                    }
-                                }
+                if (gate->vdd == 1) {
+                    for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
+                        if (w->output_id == t->id) {
+                            switch (w->output_pin) {
+                                case PIN_TRANSISTOR_SOURCE:
+                                    t->source = 1;
+                                    break;
+                                case PIN_TRANSISTOR_DRAIN:
+                                    t->drain = 1;
+                                    break;
                             }
                         }
-                        break;
+                    }
                 }
+                break;
             }
 
+            // O input sempre se conectará em algum gate.
             else if (w->input_id == GATE_PIN_INPUT1) {
                 if (gate->input1 == 1) {
-                    switch (w->output_id) {
-                        case GATE_PIN_OUTPUT:  break;
-                        case GATE_PIN_INPUT1:  break;
-                        case GATE_PIN_INPUT2:  break;
-                        case GATE_PIN_VDD:     break;
-                        case GATE_PIN_GROUND:  break;
-                        default:
-                            for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
-                                if (w->output_id == t->id) {
-                                    switch (w->output_pin) {
-                                        case PIN_TRANSISTOR_GATE:
-                                            t->gate = 1;
-                                            break;
-                                        case PIN_TRANSISTOR_SOURCE:
-                                            t->source = 1;
-                                            break;
-                                        case PIN_TRANSISTOR_DRAIN:
-                                            t->drain = 1;
-                                            break;
-                                    }
-                                }
+                    for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
+                        if (w->output_id == t->id) {
+                            switch (w->output_pin) {
+                                case PIN_TRANSISTOR_GATE:
+                                    t->gate = 1;
+                                    break;
                             }
-                            break;
+                        }
                     }
                 }
             }
 
+            // Conexões que partem de transistores.
             else {
                 for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
                     switch (w->input_pin) {
@@ -125,15 +128,7 @@ int initialization (void)
                                         case TYPE_P:
                                             break;
                                         case TYPE_N:
-                                            if (t->gate == 1 && t->drain == 1)
-                                                t->source = 1;
-                                            else if (t->gate == 1 && t->drain == 0)
-                                                t->source = 0;
-                                            else if (t->gate == 0 && t->drain == 1)
-                                                t->source = 0;
-                                            else if (t->gate == 0 && t->drain == 0)
-                                                t->source = 0;
-
+                                            process_transistor(t, TYPE_N);
                                             gate->ground = t->source;
                                             break;
                                     }
@@ -148,15 +143,7 @@ int initialization (void)
 
                                     switch (t->type) {
                                         case TYPE_P:
-                                            if (t->source == 1 && t->gate == 1)
-                                                t->drain = 0;
-                                            else if (t->source == 1 && t->gate == 0)
-                                                t->drain = 1;
-                                            else if (t->source == 0 && t->gate == 0)
-                                                t->drain = 0;
-                                            else if (t->source == 0 && t->gate == 1)
-                                                t->drain = 0;
-
+                                            process_transistor(t, TYPE_P);
                                             gate->output = t->drain;
                                             break;
                                             
@@ -192,6 +179,5 @@ int initialization (void)
 
     return 0;
 }
-
 
 
