@@ -3,6 +3,7 @@
 
 static gate_t *create_item (void);
 static gate_t *create_not_gate (void);
+static void prepare_gate_wires (gate_t *gate);
 
 gate_t *create_gate(int type)
 {
@@ -45,7 +46,21 @@ static gate_t *create_not_gate (void)
     gate->transistors = get_transistors(1, 1);
     gate->wires       = get_wires(5);
 
+    prepare_gate_wires(gate);
+
     return gate;
+}
+
+static void prepare_gate_wires (gate_t *gate)
+{
+    wire_t *w = gate->wires;
+    
+    for (; w != NULL; w=w->next) {
+        
+
+        printf("\tinput id: %d, input pin: %d -> output id: %d, output pin: %d\n",
+            w->input_id, w->input_pin, w->output_id, w->output_pin);
+    }
 }
 
 
