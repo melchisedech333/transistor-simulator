@@ -32,6 +32,8 @@ typedef struct wire_s {
 } wire_t;
 
 wire_t *get_wires (int total);
+void add_wire_item (wire_t *wires, int input_id, int input_pin, int output_id, int output_pin);
+wire_t *create_wire (void);
 
 #endif
 

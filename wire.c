@@ -1,7 +1,6 @@
 
 #include "wire.h"
 
-static wire_t *create_wire (void);
 static void insert_wire (wire_t *wires, wire_t *n_wire);
 
 wire_t *get_wires (int total)
@@ -27,7 +26,19 @@ wire_t *get_wires (int total)
     return wires;
 }
 
-static wire_t *create_wire (void)
+void add_wire_item (wire_t *wires, int input_id, int input_pin, int output_id, int output_pin)
+{
+    wire_t *wire = create_wire();
+
+    wire->input_id   = input_id;
+    wire->input_pin  = input_pin;
+    wire->output_id  = output_id;
+    wire->output_pin = output_pin;
+
+    insert_wire(wires, wire);
+}
+
+wire_t *create_wire (void)
 {
     wire_t *wire = (wire_t *) malloc (sizeof(wire_t));
 

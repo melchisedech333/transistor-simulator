@@ -44,56 +44,21 @@ static gate_t *create_not_gate (void)
 
     gate->type        = GATE_NOT;
     gate->transistors = get_transistors(1, 1);
-    gate->wires       = get_wires(6);
+    gate->wires       = create_wire();
 
-    prepare_gate_wires(gate);
+    add_wire(GATE_PIN_VDD, 0, first_p(), PIN_TRANSISTOR_SOURCE);
+    add_wire(GATE_PIN_INPUT1, 0, first_p(), PIN_TRANSISTOR_GATE);
+    add_wire(first_p(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
+    add_wire(GATE_PIN_INPUT1, 0, first_n(), PIN_TRANSISTOR_GATE);
+    add_wire(first_n(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
+    add_wire(first_n(), PIN_TRANSISTOR_SOURCE, GATE_PIN_GROUND, 0);
+    
+    // Remote first item.
+    wire_t *w = gate->wires;
+    gate->wires = w->next;
+    free(w);
 
     return gate;
-}
-
-static void prepare_gate_wires (gate_t *gate)
-{
-    wire_t *w = gate->wires;
-
-    for (int item=0; w != NULL; w=w->next, item++) {
-        switch (item) {
-            case 0:
-                w->input_id   = GATE_PIN_VDD;
-                w->output_id  = get_first_transistor_id(gate->transistors, TYPE_P);
-                w->output_pin = PIN_TRANSISTOR_SOURCE;
-                break;
-
-            case 1:
-                w->input_id   = GATE_PIN_INPUT1;
-                w->output_id  = get_first_transistor_id(gate->transistors, TYPE_P);
-                w->output_pin = PIN_TRANSISTOR_GATE;
-                break;
-
-            case 2:
-                w->input_id  = get_first_transistor_id(gate->transistors, TYPE_P);
-                w->input_pin = PIN_TRANSISTOR_DRAIN;
-                w->output_id = GATE_PIN_OUTPUT;
-                break;
-
-            case 3:
-                w->input_id   = GATE_PIN_INPUT1;
-                w->output_id  = get_first_transistor_id(gate->transistors, TYPE_N);
-                w->output_pin = PIN_TRANSISTOR_GATE;
-                break;
-
-            case 4:
-                w->input_id  = get_first_transistor_id(gate->transistors, TYPE_N);
-                w->input_pin = PIN_TRANSISTOR_DRAIN;
-                w->output_id = GATE_PIN_OUTPUT;
-                break;
-            
-            case 5:
-                w->input_id  = get_first_transistor_id(gate->transistors, TYPE_N);
-                w->input_pin = PIN_TRANSISTOR_SOURCE;
-                w->output_id = GATE_PIN_GROUND;
-                break;
-        }
-    }
 }
 
 

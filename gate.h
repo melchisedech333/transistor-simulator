@@ -6,6 +6,14 @@
 #include "transistor.h"
 #include "wire.h"
 
+#define add_wire(INP_ID, INP_PIN, OUT_ID, OUT_PIN)                              \
+    do {                                                                        \
+        add_wire_item(gate->wires, INP_ID, INP_PIN, OUT_ID, OUT_PIN);           \
+    } while (0)
+
+#define first_p() get_first_transistor_id(gate->transistors, TYPE_P)
+#define first_n() get_first_transistor_id(gate->transistors, TYPE_N)
+
 /**
  * Supported gates.
  */
