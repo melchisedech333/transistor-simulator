@@ -37,6 +37,7 @@ typedef struct gate_s {
 } gate_t;
 
 gate_t *create_gate (int type);
+char *get_gate_name (int type);
 
 #endif
 

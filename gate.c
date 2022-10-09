@@ -61,4 +61,15 @@ static gate_t *create_not_gate (void)
     return gate;
 }
 
+char *get_gate_name (int type)
+{
+    char *strs []= {
+        "Iesus Hominum Salvator <3",
+        "GATE_NOT",
+        NULL
+    };
+
+    return strs[type];
+}
+
 

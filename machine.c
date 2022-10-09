@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 {
     gate_t *gate = create_gate(GATE_NOT);
     
-    printf("gate type: %d\n", gate->type);
+    printf("gate type: %s\n", get_gate_name(gate->type));
     printf("\ntransistors:\n");
 
     for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
