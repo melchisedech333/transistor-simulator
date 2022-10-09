@@ -20,17 +20,42 @@ int initialization (void)
 
     not->input1 = 0;
     not->vdd    = 1;
-
     test_gate(not);
+
     reset_gate(not);
 
     not->input1 = 1;
     not->vdd    = 1;
-
     test_gate(not);
 
     // ***
-    
+    gate_t *nand = create_gate(GATE_NAND);
+
+    nand->input1 = 0;
+    nand->input2 = 0;
+    nand->vdd    = 1;
+    test_gate(nand);
+
+    reset_gate(nand);
+
+    nand->input1 = 1;
+    nand->input2 = 0;
+    nand->vdd    = 1;
+    test_gate(nand);
+
+    reset_gate(nand);
+
+    nand->input1 = 0;
+    nand->input2 = 1;
+    nand->vdd    = 1;
+    test_gate(nand);
+
+    reset_gate(nand);
+
+    nand->input1  = 1;
+    nand->input2  = 1;
+    nand->vdd     = 1;
+    test_gate(nand);
 
     return 0;
 }
@@ -65,6 +90,8 @@ static void test_gate (gate_t *gate)
                 get_gate_name(gate->type),
                 gate->input1, gate->input2, 
                 gate->output, gate->vdd, gate->ground);
+
+    printf("\n+++++++++++++++++++++++++++\n\n");
 }
 
 static void process_transistor (transistor_t *t, int type)
@@ -156,7 +183,23 @@ static void process_gate (gate_t *gate)
                                     }
                                     break;
 
-                                default: break;
+                                default:
+                                    switch (t->type) {
+                                        case TYPE_N:
+                                            process_transistor(t, TYPE_N);
+                                     
+                                            for (transistor_t *t2=gate->transistors; t2 != NULL; t2=t2->next) {
+                                                if (w->output_id == t2->id) {
+                                                    switch (t2->type) {
+                                                        case TYPE_N:
+                                                            t2->drain = t->source;
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                    }
+                                    break;
                             }
                             break;
 
@@ -167,7 +210,9 @@ static void process_gate (gate_t *gate)
                                     switch (t->type) {
                                         case TYPE_P:
                                             process_transistor(t, TYPE_P);
-                                            gate->output = t->drain;
+                                            
+                                            if (t->drain)
+                                                gate->output = t->drain;
                                             break;
                                             
                                         case TYPE_N:

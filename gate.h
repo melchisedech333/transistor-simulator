@@ -26,6 +26,7 @@
  */
 
 #define GATE_NOT             1
+#define GATE_NAND            2
 
 typedef struct gate_s {
     int type;
