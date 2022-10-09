@@ -78,6 +78,3 @@ static void insert_wire (wire_t *wires, wire_t *n_wire)
 }
 
 
-
-
-
