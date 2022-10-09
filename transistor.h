@@ -13,6 +13,7 @@ typedef struct transistor_s {
     int gate;
     int drain;
     int source;
+    
     struct  transistor_s *next;
 } transistor_t;
 
