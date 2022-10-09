@@ -2,6 +2,7 @@
     "files.associations": {
         "transistor.h": "c",
         "gate.h": "c",
-        "headers.h": "c"
+        "headers.h": "c",
+        "wire.h": "c"
     }
 }

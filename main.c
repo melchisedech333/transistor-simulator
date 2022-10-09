@@ -18,7 +18,7 @@ int initialization (void)
     // show_gate_information(not);
 
     // // ***
-    // gate_t *nand = create_gate(GATE_NAND);
+    gate_t *nand = create_gate(GATE_NAND);
 
     // nand->input1 = 0;
     // nand->input2 = 0;
@@ -39,12 +39,12 @@ int initialization (void)
     // nand->vdd    = 1;
     // show_gate_information(nand);
 
-    // reset_gate(nand);
+    reset_gate(nand);
 
-    // nand->input1  = 1;
-    // nand->input2  = 1;
-    // nand->vdd     = 1;
-    // show_gate_information(nand);
+    nand->input1  = 1;
+    nand->input2  = 1;
+    nand->vdd     = 1;
+    show_gate_information(nand);
 
     // ***
     gate_t *xor = create_gate(GATE_XOR);
@@ -53,53 +53,28 @@ int initialization (void)
     xor->input2 = 1;
     xor->vdd    = 1;
     process_gate(xor);
+    show_gate_information(xor);
 
-    printf("\n%s:\n"
-            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
-            "\tVdd...: %d\n\tGround: %d\n",
-                get_gate_name(xor->type),
-                xor->input1, xor->input2, 
-                xor->output, xor->vdd, xor->ground);
+    // reset_gate(xor);
+    // xor->input1 = 0;
+    // xor->input2 = 0;
+    // xor->vdd    = 1;
+    // process_gate(xor);
+    // show_gate_information(xor);
 
-    reset_gate(xor);
-    xor->input1 = 0;
-    xor->input2 = 0;
-    xor->vdd    = 1;
-    process_gate(xor);
+    // reset_gate(xor);
+    // xor->input1 = 0;
+    // xor->input2 = 1;
+    // xor->vdd    = 1;
+    // process_gate(xor);
+    // show_gate_information(xor);
 
-    printf("\n%s:\n"
-            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
-            "\tVdd...: %d\n\tGround: %d\n",
-                get_gate_name(xor->type),
-                xor->input1, xor->input2, 
-                xor->output, xor->vdd, xor->ground);
-
-    reset_gate(xor);
-    xor->input1 = 0;
-    xor->input2 = 1;
-    xor->vdd    = 1;
-    process_gate(xor);
-
-    printf("\n%s:\n"
-            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
-            "\tVdd...: %d\n\tGround: %d\n",
-                get_gate_name(xor->type),
-                xor->input1, xor->input2, 
-                xor->output, xor->vdd, xor->ground);
-
-
-    reset_gate(xor);
-    xor->input1 = 1;
-    xor->input2 = 0;
-    xor->vdd    = 1;
-    process_gate(xor);
-
-    printf("\n%s:\n"
-            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
-            "\tVdd...: %d\n\tGround: %d\n",
-                get_gate_name(xor->type),
-                xor->input1, xor->input2, 
-                xor->output, xor->vdd, xor->ground);
+    // reset_gate(xor);
+    // xor->input1 = 1;
+    // xor->input2 = 0;
+    // xor->vdd    = 1;
+    // process_gate(xor);
+    // show_gate_information(xor);
 
     return 0;
 }

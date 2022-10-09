@@ -4,6 +4,7 @@
 
 #include "headers.h"
 #include "gate.h"
+#include "debug.h"
 
 #define set_sub(VAR)                                                           \
     VAR = (w->input_id == GATE_PIN_INPUT1) ? gate->input1 : gate->input2
@@ -30,7 +31,6 @@
         }                                                                      \
     } while (0)
 
-void show_gate_information (gate_t *gate);
 void process_gate (gate_t *gate);
 
 #endif

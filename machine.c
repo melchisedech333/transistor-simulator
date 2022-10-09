@@ -20,38 +20,6 @@ static void prepare_subgate_input (gate_t *gate);
 static void prepare_subgate_ground (gate_t *gate);
 static void prepare_gate_connections (gate_t *gate);
 
-void show_gate_information (gate_t *gate)
-{
-    printf("gate type: %s\n", get_gate_name(gate->type));
-    printf("\ntransistors:\n");
-
-    for (transistor_t *t=gate->transistors; t != NULL; t=t->next)
-        printf("\tid: %d, type: %s, gate: %d, drain: %d, source: %d\n", 
-            t->id, !t->type ? "P-TYPE" : "N-TYPE", t->gate, t->drain, t->source);
-
-    printf("\nwires:\n");
-    for (wire_t *w=gate->wires; w != NULL; w=w->next) 
-        printf("\tinput id: %d, input pin: %d -> output id: %d, output pin: %d\n",
-            w->input_id, w->input_pin, w->output_id, w->output_pin);
-
-    printf("\nProcess gate transistors...\n");
-    process_gate(gate);
-
-    printf("\ntransistors:\n");
-    for (transistor_t *t=gate->transistors; t != NULL; t=t->next)
-        printf("\tid: %d, type: %s, gate: %d, drain: %d, source: %d\n", 
-            t->id, !t->type ? "P-TYPE" : "N-TYPE", t->gate, t->drain, t->source);
-
-    printf("\n%s:\n"
-            "\tInput1: %d\n\tInput2: %d\n\tOutput: %d\n"
-            "\tVdd...: %d\n\tGround: %d\n",
-                get_gate_name(gate->type),
-                gate->input1, gate->input2, 
-                gate->output, gate->vdd, gate->ground);
-
-    printf("\n+++++++++++++++++++++++++++\n\n");
-}
-
 void process_gate (gate_t *gate)
 {
     if (gate->subgate) 
