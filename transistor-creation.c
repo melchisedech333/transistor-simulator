@@ -1,5 +1,5 @@
 
-#include "transistor.h"
+#include "transistor-creation.h"
 
 static transistor_t *create_transistor (int type);
 static void insert_transistor (transistor_t *transistors, transistor_t *n_transistor);

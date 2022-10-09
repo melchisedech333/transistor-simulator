@@ -1,6 +1,6 @@
 
-#ifndef _H_WIRE_
-#define _H_WIRE_
+#ifndef _H_WIRE_CREATION_
+#define _H_WIRE_CREATION_
 
 #include "headers.h"
 

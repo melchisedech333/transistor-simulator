@@ -1,7 +1,15 @@
 
-#include "gate.h"
+/**
+ * Responsável por realizarf a criação das portas lógicas, criando um cpnjunto
+ * de transistores, e um punhado de fios, e conectando os fios nos devidos 
+ * terminais. Bem como realizando a conexão do Vdd (Power Supply) e do Ground.
+ * Também é possível realizar a criação de novas portas lógicas a partir de 
+ * outras portas já existentes.
+ */
+
+#include "gate-construction.h"
+#include "gate-machine.h"
 #include "debug.h"
-#include "machine.h"
 
 static gate_t *create_item (void);
 static gate_t *create_not_gate (void);

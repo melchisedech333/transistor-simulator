@@ -1,10 +1,10 @@
 
-#ifndef _H_GATE_
-#define _H_GATE_
+#ifndef _H_GATE_CONSTRUCTION_
+#define _H_GATE_CONSTRUCTION_
 
 #include "headers.h"
-#include "transistor.h"
-#include "wire.h"
+#include "transistor-creation.h"
+#include "wire-creation.h"
 
 #define add_wire(INP_ID, INP_PIN, OUT_ID, OUT_PIN)                             \
     do {                                                                       \

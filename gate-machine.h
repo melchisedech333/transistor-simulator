@@ -1,9 +1,9 @@
 
-#ifndef _H_MACHINE_
-#define _H_MACHINE_
+#ifndef _H_GATE_MACHINE_
+#define _H_GATE_MACHINE_
 
 #include "headers.h"
-#include "gate.h"
+#include "gate-construction.h"
 #include "debug.h"
 
 #define set_sub(VAR)                                                           \

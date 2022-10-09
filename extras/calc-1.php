@@ -11,8 +11,8 @@
  * 1 + 1 + 1 = 1 (enable flag)
  */
 
-$number1 = "01";
-$number2 = "01";
+$number1 = "101";
+$number2 = "011";
 $result  = "";
 $size    = strlen($number1);
 $flag    = false;

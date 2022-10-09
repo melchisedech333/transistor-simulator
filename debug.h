@@ -3,7 +3,7 @@
 #define _H_DEBUG_
 
 #include "headers.h"
-#include "gate.h"
+#include "gate-construction.h"
 
 /**
  * 0 = Disabled.

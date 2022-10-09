@@ -1,6 +1,6 @@
 
 #include "debug.h"
-#include "machine.h"
+#include "gate-machine.h"
 
 static void show_gate_minimal_information (gate_t *gate);
 

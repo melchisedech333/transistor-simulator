@@ -1,6 +1,6 @@
 
 #include "headers.h"
-#include "machine.h"
+#include "gate-machine.h"
 
 int initialization (void)
 {

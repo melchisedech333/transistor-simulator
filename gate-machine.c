@@ -2,11 +2,21 @@
 /**
  * I Love Jesus <3
  * The Network is the Machine.
+ * 
+ * Este código é responsável por apurar o estado da questão em relação aos
+ * transistores. Ou seja, ele simula o equivalente a existência de uma diferença
+ * de potencial no circuito, fazendo com que as cargas elétricas saiam do Vdd, 
+ * e vão em direção ao Ground. A tensão utiliza é simbólica, e para deixar mais
+ * simplificado as coisas usei os valores 1 e 0, onde 0 é desligado (0 Volt)
+ * e 1 é ligado (1 Volt). Desta maneira a energia percorre o circuito e assim
+ * vão sendo calculados os valores dos transistores em relação a entrada de dados
+ * no gate, source e drain (levando em conta os tipos N e P). Em resumo: os valores
+ * dos transistores são apurados, bem como os valores das interfaces dos gates.
  */
 
-#include "machine.h"
-#include "transistor.h"
-#include "gate.h"
+#include "gate-machine.h"
+#include "gate-construction.h"
+#include "transistor-creation.h"
 
 static void process_transistor (transistor_t *t, int type);
 static void process_gate_connection (gate_t *gate, wire_t *w);
@@ -95,7 +105,7 @@ static void prepare_gate_connections (gate_t *gate)
             case GATE_SUB3_INPUT2: attr_transistor_input(gate->sub3->input2); break;
             case GATE_SUB4_INPUT1: attr_transistor_input(gate->sub4->input1); break;
             case GATE_SUB4_INPUT2: attr_transistor_input(gate->sub4->input2); break;
-            case GATE_PIN_OUTPUT: attr_transistor_input(gate->output);        break;
+            case GATE_PIN_OUTPUT:  attr_transistor_input(gate->output);       break;
         }
     }
 }
@@ -148,7 +158,7 @@ static void prepare_subgate_input (gate_t *gate)
 
 static void prepare_subgate_vdd (gate_t *gate)
 {
-    // O Vdd sempre se conectada com os Vdd dos sub-gates. 
+    // O Vdd sempre se conecta com os Vdd dos sub-gates. 
 
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {        
         if (w->input_id == GATE_PIN_VDD) {

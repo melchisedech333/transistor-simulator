@@ -1,6 +1,6 @@
 
-#ifndef _H_TRANSISTOR_
-#define _H_TRANSISTOR_
+#ifndef _H_TRANSISTOR_CREATION_
+#define _H_TRANSISTOR_CREATION_
 
 #include "headers.h"
 
@@ -9,7 +9,7 @@
 
 typedef struct transistor_s {
     int id;
-    int type;       // 0: N, 1: P.
+    int type;       // 0: N-TYPE, 1: P-TYPE.
     int gate;
     int drain;
     int source;

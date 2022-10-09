@@ -1,12 +1,15 @@
 #!/bin/bash
 
-gcc -c debug.c      -o debug.o
-gcc -c transistor.c -o transistor.o
-gcc -c wire.c       -o wire.o
-gcc -c gate.c       -o gate.o
-gcc -c machine.c    -o machine.o
+gcc -c debug.c                  -o debug.o
+gcc -c transistor-creation.c    -o transistor-creation.o
+gcc -c wire-creation.c          -o wire-creation.o
+gcc -c gate-construction.c      -o gate-construction.o
+gcc -c gate-machine.c           -o gate-machine.o
 
-gcc main.c machine.o debug.o transistor.o wire.o gate.o -o machine
+OBJECTS="  debug.o gate-machine.o gate-construction.o "
+OBJECTS+=" transistor-creation.o wire-creation.o      "
+
+gcc main.c $OBJECTS -o machine
 
 rm -rf *.o
 
