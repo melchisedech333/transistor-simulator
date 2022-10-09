@@ -100,28 +100,6 @@ static void process_gate_connection (gate_t *gate, wire_t *w)
     }
 }
 
-#define attr_transistor_input(ITEM)                                            \
-    do {                                                                       \
-        switch (w->input_id) {                                                 \
-            case GATE_SUB1_OUTPUT:                                             \
-                if (gate->sub1->output)                                        \
-                    ITEM = gate->sub1->output;                                 \
-                break;                                                         \
-            case GATE_SUB2_OUTPUT:                                             \
-                if (gate->sub2->output)                                        \
-                    ITEM = gate->sub2->output;                                 \
-                break;                                                         \
-            case GATE_SUB3_OUTPUT:                                             \
-                if (gate->sub3->output)                                        \
-                    ITEM = gate->sub3->output;                                 \
-                break;                                                         \
-            case GATE_SUB4_OUTPUT:                                             \
-                if (gate->sub4->output)                                        \
-                    ITEM = gate->sub4->output;                                 \
-                break;                                                         \
-        }                                                                      \
-    } while (0)
-
 static void process_gate_elements (gate_t *gate)
 {
     prepare_subgate_vdd(gate);
@@ -141,33 +119,15 @@ static void prepare_gate_connections (gate_t *gate)
         }
 
         switch (w->output_id) {
-            case GATE_SUB1_INPUT1:
-                attr_transistor_input(gate->sub1->input1);
-                break;
-            case GATE_SUB1_INPUT2:
-                attr_transistor_input(gate->sub1->input2);
-                break;
-            case GATE_SUB2_INPUT1:
-                attr_transistor_input(gate->sub2->input1);
-                break;
-            case GATE_SUB2_INPUT2:
-                attr_transistor_input(gate->sub2->input2);
-                break;
-            case GATE_SUB3_INPUT1:
-                attr_transistor_input(gate->sub3->input1);
-                break;
-            case GATE_SUB3_INPUT2:
-                attr_transistor_input(gate->sub3->input2);
-                break;
-            case GATE_SUB4_INPUT1:
-                attr_transistor_input(gate->sub4->input1);
-                break;
-            case GATE_SUB4_INPUT2:
-                attr_transistor_input(gate->sub4->input2);
-                break;
-            case GATE_PIN_OUTPUT:
-                attr_transistor_input(gate->output);
-                break;
+            case GATE_SUB1_INPUT1: attr_transistor_input(gate->sub1->input1); break;
+            case GATE_SUB1_INPUT2: attr_transistor_input(gate->sub1->input2); break;
+            case GATE_SUB2_INPUT1: attr_transistor_input(gate->sub2->input1); break;
+            case GATE_SUB2_INPUT2: attr_transistor_input(gate->sub2->input2); break;
+            case GATE_SUB3_INPUT1: attr_transistor_input(gate->sub3->input1); break;
+            case GATE_SUB3_INPUT2: attr_transistor_input(gate->sub3->input2); break;
+            case GATE_SUB4_INPUT1: attr_transistor_input(gate->sub4->input1); break;
+            case GATE_SUB4_INPUT2: attr_transistor_input(gate->sub4->input2); break;
+            case GATE_PIN_OUTPUT: attr_transistor_input(gate->output);        break;
         }
     }
 }
