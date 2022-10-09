@@ -29,7 +29,7 @@ typedef struct gate_s {
     int output;
 
     // Circuit interface.
-    int vdd;
+    int vdd;        // Voltage Drain Drain.
     int ground;
 
     transistor_t *transistors;
