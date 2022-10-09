@@ -7,7 +7,7 @@ static void insert_transistor (transistor_t *transistors, transistor_t *n_transi
 transistor_t *get_transistors (int total_p, int total_n)
 {
     transistor_t *transistors = NULL, *transistor = NULL;
-    int index = 0, i_total_p = total_p, i_total_n = total_n;
+    int index = 1, i_total_p = total_p, i_total_n = total_n;
 
     if (!i_total_p && !i_total_n) {
         printf("Enter a valid number of transistor.\n");

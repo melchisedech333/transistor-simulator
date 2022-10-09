@@ -5,16 +5,27 @@
 #include "headers.h"
 #include "transistor.h"
 
-#define GATE_NOT 1
+/**
+ * Supported gates.
+ */
+
+#define GATE_NOT             1
 
 /**
- * Gate input/output id:
+ * Gate inteface IDs:
  * 
- *  1 = -1 -> output
- *  2 = -2 -> input1
- *  3 = -3 -> input2
- *  N = -N -> inputN
+ *   0 -> output
+ *  -1 -> input1
+ *  -2 -> input2
+ *  -3 -> input3
+ *  -N -> inputN
+ * 
+ * Note: transistors use positive numbers (>=1).
  */
+
+#define GATE_PIN_OUTPUT      0
+#define GATE_PIN_INPUT1     -1
+#define GATE_PIN_INPUT2     -2
 
 typedef struct wire_s {
     int input_id;       // Transistor ID.
