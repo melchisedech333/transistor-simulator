@@ -35,7 +35,7 @@ void device_arithmetic_set_data (device_arithmetic_t *device, int input, char *d
     switch (input) {
         case ARITHMETIC_INPUT1:
         case ARITHMETIC_INPUT2:
-            if (strlen(data) > DEVICE_INPUT_SIZE) {
+            if (strlen(data) > (DEVICE_INPUT_SIZE -1)) {
                 printf("Error input data (arithmetic device).\n");
                 exit(0);
             }
@@ -121,9 +121,6 @@ char get_operation_op (int op)
 
 static void process_sum (device_arithmetic_t *device)
 {
-    printf("> %s\n", device->input1);
-    printf("> %s\n", device->input2);
-
     half_adder_t *hf;
     int carry = 0;
     int bit1  = 0;
