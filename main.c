@@ -1,7 +1,7 @@
 
 #include "headers.h"
 #include "utils.h"
-#include "devices.h"
+#include "device-arithmetic.h"
 #include "gate-construction.h"
 
 int initialization (void)
@@ -19,7 +19,7 @@ int initialization (void)
 
     // Show information.
     printf("\nOperation: %s\n\n", get_operation_name(device->operation));
-    
+
     printf("\t BINARY     | DEC\n");
     printf("\t ----------------\n");
     printf("\t            |\n");
