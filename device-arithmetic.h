@@ -19,16 +19,21 @@
  * 0000000000 -> output (+ final carry)
  */
 
-#define DEVICE_INPUT_SIZE           9
+#define DEVICE_INPUT_SIZE          10
 #define DEVICE_OUTPUT_SIZE         10
 
 typedef struct device_arithmetic_s {
     char input1 [DEVICE_INPUT_SIZE  + 1]; // '\0' para string.
     char input2 [DEVICE_INPUT_SIZE  + 1];
     char output [DEVICE_OUTPUT_SIZE + 1];
-
+    
     int operation;
 } device_arithmetic_t;
+
+typedef struct half_adder_s {
+    int output;
+    int carry;
+} half_adder_t;
 
 device_arithmetic_t *create_device_arithmetic (void);
 void device_arithmetic_set_data (device_arithmetic_t *device, int input, char *data);

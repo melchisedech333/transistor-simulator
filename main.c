@@ -10,8 +10,8 @@ int initialization (void)
     device_arithmetic_reset(device);
 
     // Configure device.
-    device_arithmetic_set_data(device, ARITHMETIC_INPUT1, "101");
-    device_arithmetic_set_data(device, ARITHMETIC_INPUT2, "011");
+    device_arithmetic_set_data(device, ARITHMETIC_INPUT1, "11101");
+    device_arithmetic_set_data(device, ARITHMETIC_INPUT2, "11011");
     device_arithmetic_set_operation(device, ARITHMETIC_OPERATION_SUM);
 
     // Process device.
@@ -19,10 +19,14 @@ int initialization (void)
 
     printf("\nOperation: %s\n", get_operation_name(device->operation));
     printf("\n\t %s\n\t %s\n", device->input1, device->input2);
-    printf("\t----------\n\t%s\n\n", device->output);
-    printf("Decimal: %d %c %d = %d\n\n", 
+    printf("\t ----------\n\t %s\n\n", device->output);
+    printf("Decimal A: %d %c %d = %d\n",
         bindec(device->input1), get_operation_op(device->operation), 
         bindec(device->input2), bindec(device->output));
+    printf("Decimal B: %d %c %d = %d\n", 
+        bindec(device->input1), get_operation_op(device->operation), 
+        bindec(device->input2), 
+        bindec(device->input1) + bindec(device->input2));
 
     return 0;
 }

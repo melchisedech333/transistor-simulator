@@ -16,6 +16,7 @@ static gate_t *create_not_gate (void);
 static gate_t *create_nand_gate (void);
 static gate_t *create_xor_gate (void);
 static gate_t *create_and_gate (void);
+static gate_t *create_or_gate (void);
 
 gate_t *create_gate(int type)
 {
@@ -34,6 +35,10 @@ gate_t *create_gate(int type)
 
         case GATE_AND:
             return create_and_gate();
+            break;
+
+        case GATE_OR:
+            return create_or_gate();
             break;
     }
 
@@ -103,6 +108,7 @@ static gate_t *create_item (void)
     gate->subcount      = 0;
     gate->vdd           = 0;
     gate->ground        = 0;
+    gate->carry         = 0;
     gate->transistors   = NULL;
     gate->wires         = NULL;
     gate->sub1          = NULL;
@@ -213,7 +219,7 @@ static gate_t *create_and_gate (void)
     gate_t *gate = create_item();
 
     gate->type        = GATE_AND;
-    gate->transistors = get_transistors(2, 2);
+    gate->transistors = NULL;
     gate->wires       = create_wire();
     gate->subgate     = 1;
     gate->subcount    = 2;
@@ -234,6 +240,46 @@ static gate_t *create_and_gate (void)
     // Get Ground value.
     add_wire(GATE_PIN_GROUND, 0, GATE_SUB1_GROUND, 0);
     add_wire(GATE_PIN_GROUND, 0, GATE_SUB2_GROUND, 0);
+
+    remove_first_wire();
+    return gate;
+}
+
+static gate_t *create_or_gate (void)
+{
+    gate_t *gate = create_item();
+
+    gate->type        = GATE_OR;
+    gate->transistors = NULL;
+    gate->wires       = create_wire();
+    gate->subgate     = 1;
+    gate->subcount    = 3;
+
+    gate->sub1 = create_nand_gate();
+    gate->sub2 = create_nand_gate();
+    gate->sub3 = create_nand_gate();
+
+    // Control of VDD/Volts.
+    add_wire(GATE_PIN_VDD, 0, GATE_SUB1_VDD, 0);
+    add_wire(GATE_PIN_VDD, 0, GATE_SUB2_VDD, 0);
+    add_wire(GATE_PIN_VDD, 0, GATE_SUB3_VDD, 0);
+
+    // Gates connections.
+    add_wire(GATE_PIN_INPUT1, 0, GATE_SUB1_INPUT1, 0);
+    add_wire(GATE_PIN_INPUT1, 0, GATE_SUB1_INPUT2, 0);
+
+    add_wire(GATE_PIN_INPUT2, 0, GATE_SUB2_INPUT1, 0);
+    add_wire(GATE_PIN_INPUT2, 0, GATE_SUB2_INPUT2, 0);
+
+    add_wire(GATE_SUB1_OUTPUT, 0, GATE_SUB3_INPUT1, 0);
+    add_wire(GATE_SUB2_OUTPUT, 0, GATE_SUB3_INPUT2, 0);
+
+    add_wire(GATE_SUB3_OUTPUT, 0, GATE_PIN_OUTPUT, 0);
+
+    // Get Ground value.
+    add_wire(GATE_PIN_GROUND, 0, GATE_SUB1_GROUND, 0);
+    add_wire(GATE_PIN_GROUND, 0, GATE_SUB2_GROUND, 0);
+    add_wire(GATE_PIN_GROUND, 0, GATE_SUB3_GROUND, 0);
 
     remove_first_wire();
     return gate;

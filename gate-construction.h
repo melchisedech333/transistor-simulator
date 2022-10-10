@@ -29,6 +29,7 @@
 #define GATE_NAND   2
 #define GATE_XOR    3
 #define GATE_AND    4
+#define GATE_OR     5
 
 typedef struct gate_s {
     int type;
@@ -43,6 +44,9 @@ typedef struct gate_s {
     // Circuit interface.
     int vdd;        // Voltage Drain Drain.
     int ground;
+
+    // Special flag.
+    int carry;
 
     transistor_t *transistors;
     wire_t *wires;

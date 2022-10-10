@@ -1,7 +1,11 @@
 
 #include "device-arithmetic.h"
+#include "gate-construction.h"
 
 static void process_sum (device_arithmetic_t *device);
+static half_adder_t *half_adder (int input1, int input2);
+static half_adder_t *half_adder_invert (int input1, int input2);
+static half_adder_t *create_half_adder (void);
 
 device_arithmetic_t *create_device_arithmetic (void)
 {
@@ -120,6 +124,7 @@ static void process_sum (device_arithmetic_t *device)
     printf("> %s\n", device->input1);
     printf("> %s\n", device->input2);
 
+    half_adder_t *hf;
     int carry = 0;
     int bit1  = 0;
     int bit2  = 0;
@@ -134,8 +139,82 @@ static void process_sum (device_arithmetic_t *device)
         if (device->input2[a] == '1')
             bit2 = 1;
 
-        // 
+        // Carry disabled.
+        if (carry == 0) {
+            hf = half_adder(bit1, bit2);
+            carry = hf->carry;
+            device->output[a] = hf->output + 48;
+            free(hf);
+        }
+
+        // Carry enabled.
+        else {
+            hf = half_adder_invert(bit1, bit2);
+            carry = hf->carry;
+            device->output[a] = hf->output + 48;
+            free(hf);
+        }
     }
+}
+
+static half_adder_t *half_adder (int input1, int input2)
+{
+    half_adder_t *hf = create_half_adder();
+    gate_t *and = create_gate(GATE_AND);
+    gate_t *xor = create_gate(GATE_XOR);
+
+    and->input1 = input1;
+    and->input2 = input2;
+    xor->input1 = input1;
+    xor->input2 = input2;
+
+    run_gate(and);
+    run_gate(xor);
+
+    hf->output = xor->output;
+    hf->carry  = and->output;
+
+    return hf;
+}
+
+static half_adder_t *half_adder_invert (int input1, int input2)
+{
+    half_adder_t *hf = create_half_adder();
+    gate_t *or = create_gate(GATE_OR);
+    gate_t *xor = create_gate(GATE_XOR);
+    gate_t *not = create_gate(GATE_NOT);
+
+    or->input1  = input1;
+    or->input2  = input2;
+    xor->input1 = input1;
+    xor->input2 = input2;
+
+    run_gate(xor);
+    not->input1 = xor->output;
+    run_gate(not);
+    hf->output = not->output;
+
+    run_gate(or);
+    hf->carry = or->output;
+
+    return hf;
+}
+
+static half_adder_t *create_half_adder (void)
+{
+    half_adder_t *hf = (half_adder_t *) malloc(sizeof(half_adder_t));
+    
+    if (!hf) {
+        printf("Error alloc memory.\n");
+        exit(-1);
+    }
+
+    memset(hf, 0, sizeof(half_adder_t));
+    
+    hf->output = 0;
+    hf->carry = 0;
+
+    return hf;
 }
 
 

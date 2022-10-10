@@ -11,7 +11,7 @@
  * 2 = Minimal debug information;
  */
 
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 void run_debug_mode (gate_t *gate);
 void run_debug_mode_minimal (gate_t *gate);

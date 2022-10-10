@@ -6,7 +6,8 @@ Portas lógicas implementadas:
 - NOT
 - NAND
 - XOR (composta por portas NAND)
-- AND (comporta por NAND e NOT)
+- AND (comporta por portas NAND e NOT)
+- OR (composta por portas NAND)
 
 Obs: internamente a aplicação ativa a flag <b>Vdd</b>, significando que há energia no circuito. Onde é conectado um fio do Power Supply ao transistor (no source para P-TYPE, no drain para N-TYPE). Para os casos onde é feito o uso de portas já existentes para criar outras (como a XOR), o Vdd da porta em questão é conectado ao Vdd de cada uma das sub-portas, fazendo assim com que a energia percorra os circuitos caminhando em direção ao Ground.
 
@@ -75,5 +76,7 @@ and->input1 = 0;
 and->input2 = 0;
 run_gate(and);
 ```
+
+Para realização da soma binária foi utilizado o circuito Half Adder.
 
 
