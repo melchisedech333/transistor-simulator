@@ -2,6 +2,7 @@
 #include "headers.h"
 #include "utils.h"
 #include "devices.h"
+#include "gate-construction.h"
 
 int initialization (void)
 {

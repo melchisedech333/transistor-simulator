@@ -1,6 +1,8 @@
 
 #include "device-arithmetic.h"
 
+static void process_sum (device_arithmetic_t *device);
+
 device_arithmetic_t *create_device_arithmetic (void)
 {
     device_arithmetic_t *device = (device_arithmetic_t *) malloc(sizeof(device_arithmetic_t));
@@ -88,7 +90,11 @@ void device_arithmetic_reset (device_arithmetic_t *device)
 
 void run_device_arithmetic (device_arithmetic_t *device)
 {
-    
+    switch (device->operation) {
+        case ARITHMETIC_OPERATION_SUM:
+            process_sum(device);
+            break;
+    }
 }
 
 char *get_operation_name (int op)
@@ -107,6 +113,29 @@ char get_operation_op (int op)
     char str[]= "J+";
 
     return str[op];
+}
+
+static void process_sum (device_arithmetic_t *device)
+{
+    printf("> %s\n", device->input1);
+    printf("> %s\n", device->input2);
+
+    int carry = 0;
+    int bit1  = 0;
+    int bit2  = 0;
+
+    for (int a=(DEVICE_INPUT_SIZE-1); a>=0; a--) {
+        
+        // Reset current bit.
+        bit1 = bit2 = 0;
+
+        if (device->input1[a] == '1')
+            bit1 = 1;
+        if (device->input2[a] == '1')
+            bit2 = 1;
+
+        // 
+    }
 }
 
 

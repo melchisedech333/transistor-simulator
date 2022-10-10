@@ -28,6 +28,7 @@
 #define GATE_NOT    1
 #define GATE_NAND   2
 #define GATE_XOR    3
+#define GATE_AND    4
 
 typedef struct gate_s {
     int type;
