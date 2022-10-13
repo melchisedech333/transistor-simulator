@@ -143,7 +143,7 @@ Using all these things it was possible to build a <b>Half Adder</b> mechanism, s
 
 <br>
 
-For more details you can analyze the algorithm in the file [device-arithmetic.c](device-arithmetic.c), where the <b>Half Adder</b> mechanism was created, but also a kind of inverse, in order to work the sum algorithm implemented in the <b>process_sum()</b> function.
+For more details you can analyze the algorithm in the file [device-arithmetic.c](device-arithmetic.c), where the <b>Half Adder</b> mechanism was created to be used in the implemented binary sum algorithm in the <b>process_sum()</b> function.
 
 <br>
 

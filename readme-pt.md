@@ -144,7 +144,7 @@ Utilizando todas estas coisas foi possível construir um mecanismo <b>Half Adder
 
 <br>
 
-Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithmetic.c](device-arithmetic.c), onde ali foi feito o mecanismo do <b>Half Adder</b>, mas também uma espécie de seu inverso, para poder funcionar o algoritmo da soma implementado na função <b>process_sum()</b>.
+Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithmetic.c](device-arithmetic.c), onde ali foi feito o mecanismo do <b>Half Adder</b> para ser utilizado no algoritmo da soma binária implementado na função <b>process_sum()</b>.
 
 <br>
 
