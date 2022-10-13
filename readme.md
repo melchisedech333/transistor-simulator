@@ -83,8 +83,8 @@ add_wire(first_n(), PIN_TRANSISTOR_SOURCE, GATE_PIN_GROUND, 0);
 O código acima realiza o seguinte esquema lógico:
 <table>
   <tr>
-    <td><img src="images/not-1.png" width="50%" ></td>
-    <td><img src="images/not-2.png" width="50%" ></td>
+    <td><img src="images/not-1.png" width="100%" ></td>
+    <td><img src="images/not-2.png" width="100%" ></td>
    </tr>
   </tr>
 </table>
