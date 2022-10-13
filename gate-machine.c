@@ -156,7 +156,7 @@ static void prepare_subgate_input (gate_t *gate)
 
 static void prepare_subgate_vdd (gate_t *gate)
 {
-    // O Vdd sempre se conecta com os Vdd dos sub-gates. 
+    // The Vdd always connects with the Vdd of the sub-gates.
 
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {        
         if (w->input_id == GATE_PIN_VDD) {
@@ -182,7 +182,7 @@ static void process_gate_direct (gate_t *gate)
 {
     for (wire_t *w=gate->wires; w != NULL; w=w->next) {
 
-        // O Vdd apenas se conectará em alguma porta de source ou dreno.
+        // Vdd will only connect to some source or drain port.
         if (w->input_id == GATE_PIN_VDD) {
             if (gate->vdd == 1) {
                 for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
@@ -200,7 +200,7 @@ static void process_gate_direct (gate_t *gate)
             }
         }
 
-        // O input sempre se conectará em algum gate.
+        // The input will always connect to some gate.
         else if (w->input_id == GATE_PIN_INPUT1) {
             if (gate->input1 == 1)
                 process_gate_connection(gate, w);
@@ -209,8 +209,8 @@ static void process_gate_direct (gate_t *gate)
                 process_gate_connection(gate, w);
         }
 
-        // Conexões que partem dos transistores só podem sair do drain ou do source.
-        // E conectarem-se no output, ground, ou um gate de algum outro transistor. 
+        // Connections that come out of transistors, can only come out of drain or source.
+        // And connect to the output, ground, or a gate of some other transistor.
         else {
             for (transistor_t *t=gate->transistors; t != NULL; t=t->next) {
                 if (w->input_id == t->id)

@@ -147,7 +147,7 @@ For more details you can analyze the algorithm in the file [device-arithmetic.c]
 
 <br>
 
-Here is the output of the program as it runs:
+Here is the output of the program:
 
 ```
 Operation: SUM (+)

@@ -148,7 +148,7 @@ Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithme
 
 <br>
 
-Aqui está a saída do programa ao ser executado:
+Aqui está a saída do programa:
 
 ```
 Operation: SUM (+)
