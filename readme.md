@@ -87,13 +87,21 @@ O código acima realiza o seguinte esquema lógico:
 
 <table width="100%">
   <tr>
-    <td width="50%" >Chave desligada</td>
-    <td width="50%" >Chave ligada</td>
+    <td width="50%" >
+       Chave desligada
+    </td>
+    <td width="50%" >
+       Chave ligada
+    </td>
    </tr>
   </tr>
   <tr>
-    <td width="50%" ><img src="images/not-1.png" width="100%" ></td>
-    <td width="50%" ><img src="images/not-2.png" width="100%" ></td>
+    <td width="50%" >
+       <img src="images/not-1.png" width="100%" >
+    </td>
+    <td width="50%" >
+       <img src="images/not-2.png" width="100%" >
+    </td>
    </tr>
   </tr>
 </table>
