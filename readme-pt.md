@@ -167,6 +167,10 @@ Enfim, resumindo tudo, foi simulado os transistores MOSFET do tipo P e N, e com 
 
 <br>
 
+**Se você gostou deste código, ou ele te ajudou em algo, considere [ser um patrocinador](https://github.com/sponsors/melchisedech333) :blue_heart:** 
+
+<br>
+
 :smiley: Autor
 ---
 
