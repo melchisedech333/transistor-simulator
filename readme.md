@@ -101,7 +101,6 @@ O código acima realiza o seguinte esquema lógico:
     <td width="50%" >
        <img src="images/not-2.png" width="100%" >
     </td>
-   </tr>
   </tr>
 </table>
 
