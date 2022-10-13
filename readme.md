@@ -104,15 +104,15 @@ Utilizando as noções expostas acima, foi construído as portas abaixo.
 
 <table width="100%">
   <tr>
-    <td valign="top" >
+    <td valign="top" width="33%" >
        NOT
        <img src="images/gate-not.png" width="100%" >
     </td>
-    <td valign="top" >
+    <td valign="top" width="33%" >
        NAND
        <img src="images/gate-nand.png" width="100%" >
     </td>
-    <td valign="top" >
+    <td valign="top" width="33%" >
        AND
        <img src="images/gate-and.png" width="100%" >
     </td>
