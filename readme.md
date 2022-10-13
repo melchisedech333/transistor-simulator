@@ -106,25 +106,27 @@ Utilizando as noções expostas acima, foi construído as portas abaixo.
   <tr>
     <td>
        NOT
-       <img src="images/not-1.png" width="100%" >
+       <img src="images/gate-not.png" width="100%" >
     </td>
     <td>
        NAND
-       <img src="images/not-1.png" width="100%" >
+       <img src="images/gate-nand.png" width="100%" >
     </td>
-    <td>
-       XOR
-       <img src="images/not-1.png" width="100%" >
-    </td>
-  </tr>
-  <tr>
     <td>
        AND
-       <img src="images/not-1.png" width="100%" >
+       <img src="images/gate-and.png" width="100%" >
+    </td>
+  </tr>
+</table>
+<table width="100%">
+  <tr>
+    <td>
+       XOR (utilizando portas NAND)
+       <img src="images/gate-xor.png" width="100%" >
     </td>
     <td>
-       OR
-       <img src="images/not-1.png" width="100%" >
+       OR (utilizando portas NAND)
+       <img src="images/gate-or.png" width="100%" >
     </td>
   </tr>
 </table>
