@@ -148,6 +148,25 @@ Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithme
 
 <br>
 
+Aqui está a saída do programa ao ser executado:
+
+<br>
+
+```
+Operation: SUM (+)
+
+         BINARY     | DEC
+         ----------------
+                    |
+         0000000101 | 5
+         0000000011 | 3
+         ----------------
+         0000001000 | 8
+
+```
+
+<br>
+
 :smiley: Autor
 ---
 
