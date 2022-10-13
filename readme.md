@@ -64,14 +64,15 @@ GATE | SOURCE | DRAIN
 
 <br>
 
-Utilizando os transistores com a lógica acima, é criado canais de comunicação entre eles, para que assim sejam criadas as portas lógicas. Ou seja, para realizar a comunicação eu criei os equivalentes aos fios que conectam os canais dos transistores, como demonstra o código abaixo na criação da porta lógica "NOT" (para ver o código completo acesso <b>[gate-construction.c](gate-construction.c)</b>).
+Utilizando os transistores com a lógica acima, é criado canais de comunicação entre eles, para que assim sejam criadas as portas lógicas. Ou seja, para realizar a comunicação eu criei os equivalentes aos fios que conectam os canais dos transistores, como demonstra o código abaixo na criação da porta lógica <b>NOT</b> (para ver o código completo acesse <b>[gate-construction.c](gate-construction.c)</b>).
 
 ```c
 // Cria dois transistores, um do tipo P, outro do tipo N.
 // O primeiro da lista é o transistor do tipo P.
 gate->transistors = get_transistors(1, 1);
 
-// Adiciona os fios para realizar a comunicação entre os canais dos transistores.
+// Adiciona os fios para realizar a comunicação
+// entre os canais dos transistores.
 add_wire(GATE_PIN_VDD, 0, first_p(), PIN_TRANSISTOR_SOURCE);
 add_wire(GATE_PIN_INPUT1, 0, first_p(), PIN_TRANSISTOR_GATE);
 add_wire(first_p(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
@@ -79,6 +80,8 @@ add_wire(GATE_PIN_INPUT1, 0, first_n(), PIN_TRANSISTOR_GATE);
 add_wire(first_n(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
 add_wire(first_n(), PIN_TRANSISTOR_SOURCE, GATE_PIN_GROUND, 0);
 ```
+
+Observe que o <b>Vdd</b> (que representa o positivo) é a origem do primeiro fio conectado, e o <b>Ground</b> é o último.
 
 O código acima realiza o seguinte esquema lógico:
 <table width="100%">
@@ -93,6 +96,8 @@ O código acima realiza o seguinte esquema lógico:
    </tr>
   </tr>
 </table>
+
+<b>Obs:</b> o transistor do tipo N colocado da saída do CMOS (P e N) é apenas para demonstrar o funcionamento da porta lógica, fazendo com que ela acione um transistor que controla um LED. Como se pode notar, o LED liga e desliga conforme o estado de ligado/desligado da porta lógica.
 
 <br>
 
