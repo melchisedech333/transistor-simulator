@@ -20,9 +20,35 @@
 
 Language: <a href="readme.md">EN-US</a>
 
+Primeiramente é importante deixar claro que fiz este código para me divertir. Eu tenho muita vontade de desenvolver coisas utilizando transistores, por isso fiz este código. E também simplesmente me deu uma vontade muito grande de criar um código que fizesse soma binária utilizando portas lógicas, mas também que essas portas lógicas fossem construídas com transistores (o mais próximo possível do funcionamento de transistores reais).
+
+No código eu crio os 2 tipos conhecidos de transistores MOSFET (N e P). Importante deixar claro que os transistores trabalham apenas com dois níveis de tensão, representados por 0 e 1, onde 0 significa nenhuma tensão aplicada (e nenhuma corrente elétrica passando pelos canais de Drain e Source), e 1 significa que há um valor X de tensão ou corrente elétrica aplicada nos respectivos canais.
+
+Vale lembrar que o funcionamento básico de um transistor MOSFET é definido pela tensão (Volts) que se aplica no Gate, fazendo com que a corrente elétrica flua nos canais de Drain e Source.
+
+<br>
+
+<b>N-TYPE:</b>
+
+Em um transistor do tipo N, a corrente elétrica flui do Drain em direção ao Source. A tabela abaixo explica o funcionamento do transistor conforme ocorra alteração no Gate.
+
+```
+       ------------->
+GATE | DRAIN | SOURCE 
+---------------------
+0    | 0     | 0
+1    | 0     | 0
+0    | 1     | 0
+1    | 1     | 1
+```
+
+Em relação ao Gate, quando o mesmo possui o valor 0 (zero), significa que não há tensão aplicada nele. Seguindo a mesma lógica, quando há o valor 1, significa que há tensão suficiente aplicada no Gate, fazendo com que ele venha a funcionar como uma chave eletrônica, ou seja, permitindo que flua corrente elétrica do Drain ao Source.
+
+Em relação ao Drain e Source, quando o valor está como 0 (zero), significa que não há tensão e nem corrente elétrica. E quando há o valor 1, significa que há tensão e/ou corrente elétrica aplicada neles.
+
+<br>
 
 
-**Se meu código te ajudou em algo, considere [ser um patrocinador](https://github.com/sponsors/melchisedech333) :blue_heart:** 
 
 <br>
 
