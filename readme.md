@@ -142,7 +142,9 @@ O código responsável por realizar o processamento das portas lógicas e dos tr
 
 Utilizando todas estas coisas foi possível construir um mecanismo <b>Half Adder</b>, semelhante a este demonstrado na imagem ao lado. Com a diferença que não foi utilizado apenas as portas <b>XOR</b> e <b>AND</b>, mas também as portas <b>OR</b> e <b>NOT</b>.
 
+<br>
 
+Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithmetic.c](device-arithmetic.c), onde ali foi feito o mecanismo do <b>Half Adder</b>, mas também uma espécie de seu inverso, para poder funcionar o algoritmo da soma implementado na função <b>process_sum()</b>.
 
 <br>
 
