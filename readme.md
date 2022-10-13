@@ -134,6 +134,18 @@ Utilizando as noções expostas acima, foi construído as seguintes portas:
 
 <br>
 
+O código responsável por realizar o processamento das portas lógicas e dos transistores é o [gate-machine.c](gate-machine.c).
+
+<br>
+
+<img src="images/half-adder.png" width="200px" align="left" >
+
+Utilizando todas estas coisas foi possível construir um mecanismo <b>Half Adder</b>, semelhante a este demonstrado na imagem ao lado. Com a diferença que não foi utilizado apenas as portas <b>XOR</b> e <b>AND</b>, mas também as portas <b>OR</b> e <b>NOT</b>.
+
+
+
+<br>
+
 :smiley: Autor
 ---
 
