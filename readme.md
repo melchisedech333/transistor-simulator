@@ -88,14 +88,6 @@ O código acima realiza o seguinte esquema lógico:
 <table width="100%">
   <tr>
     <td valign="top" width="50%" >
-       <b>Chave desligada</b>
-    </td>
-    <td valign="top" width="50%" >
-       <b>Chave ligada</b>
-    </td>
-  </tr>
-  <tr>
-    <td valign="top" width="50%" >
        <img src="images/not-1.png" width="100%" >
     </td>
     <td valign="top" width="50%" >
