@@ -120,11 +120,11 @@ Utilizando as noções expostas acima, foi construído as portas abaixo.
 </table>
 <table width="100%">
   <tr>
-    <td valign="top" >
+    <td valign="top" width="50%" >
        XOR (utilizando portas NAND)
        <img src="images/gate-xor.png" width="100%" >
     </td>
-    <td valign="top" >
+    <td valign="top" width="50%" >
        OR (utilizando portas NAND)
        <img src="images/gate-or.png" width="100%" >
     </td>
