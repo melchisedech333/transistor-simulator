@@ -150,8 +150,6 @@ Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithme
 
 Aqui está a saída do programa ao ser executado:
 
-<br>
-
 ```
 Operation: SUM (+)
 
@@ -164,6 +162,8 @@ Operation: SUM (+)
          0000001000 | 8
 
 ```
+
+Enfim, resumindo tudo, foi simulado os transistores MOSFET do tipo P e N, e com eles foi implementado portas lógicas, como AND, NOT, NAND e outras. Com as portas lógicas foi implementado o mecanismo Half Adder, e com ele foi desenvolvido um algoritmo de soma binária (para simular uma máquina de calcular). 
 
 <br>
 
