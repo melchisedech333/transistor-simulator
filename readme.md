@@ -104,15 +104,15 @@ Utilizando as noções expostas acima, foi construído as portas abaixo.
 
 <table width="100%">
   <tr>
-    <td>
+    <td valign="top" >
        NOT
        <img src="images/gate-not.png" width="100%" >
     </td>
-    <td>
+    <td valign="top" >
        NAND
        <img src="images/gate-nand.png" width="100%" >
     </td>
-    <td>
+    <td valign="top" >
        AND
        <img src="images/gate-and.png" width="100%" >
     </td>
@@ -120,11 +120,11 @@ Utilizando as noções expostas acima, foi construído as portas abaixo.
 </table>
 <table width="100%">
   <tr>
-    <td>
+    <td valign="top" >
        XOR (utilizando portas NAND)
        <img src="images/gate-xor.png" width="100%" >
     </td>
-    <td>
+    <td valign="top" >
        OR (utilizando portas NAND)
        <img src="images/gate-or.png" width="100%" >
     </td>
