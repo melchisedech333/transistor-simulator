@@ -87,11 +87,11 @@ The code above performs the following logical scheme:
 <table width="100%">
   <tr>
     <td valign="top" width="50%" >
-       <b>Off</b>
+       <b>Disabled</b>
        <img src="images/not-1.png" width="100%" >
     </td>
     <td valign="top" width="50%" >
-       <b>On</b>
+       <b>Enabled</b>
        <img src="images/not-2.png" width="100%" >
     </td>
   </tr>
