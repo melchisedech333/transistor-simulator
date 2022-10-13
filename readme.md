@@ -170,6 +170,15 @@ Finally, summarizing everything, the MOSFET transistors of type P and N were sim
 
 <br>
 
+To compile the code, simply run the <b>build.sh</b> script. It will generate the <b>machine</b> file.
+
+```bash
+./build.sh
+./machine
+```
+
+<br>
+
 :smiley: Author
 ---
 

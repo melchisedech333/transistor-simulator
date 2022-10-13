@@ -171,6 +171,15 @@ Enfim, resumindo tudo, foi simulado os transistores MOSFET do tipo P e N, e com 
 
 <br>
 
+Lembrando que para compilar o código, basta executar o script <b>build.sh</b>. Ele irá gerar o arquivo <b>machine</b>.
+
+```bash
+./build.sh
+./machine
+```
+
+<br>
+
 :smiley: Autor
 ---
 
