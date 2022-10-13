@@ -87,18 +87,18 @@ O código acima realiza o seguinte esquema lógico:
 
 <table width="100%">
   <tr>
-    <td width="50%" >
-       Chave desligada
+    <td valign="top" width="50%" >
+       <b>Chave desligada</b>
     </td>
-    <td width="50%" >
-       Chave ligada
+    <td valign="top" width="50%" >
+       <b>Chave ligada</b>
     </td>
   </tr>
   <tr>
-    <td width="50%" >
+    <td valign="top" width="50%" >
        <img src="images/not-1.png" width="100%" >
     </td>
-    <td width="50%" >
+    <td valign="top" width="50%" >
        <img src="images/not-2.png" width="100%" >
     </td>
   </tr>
@@ -124,6 +124,7 @@ Utilizando as noções expostas acima, foi construído as seguintes portas:
     </td>
   </tr>
 </table>
+
 <table width="100%">
   <tr>
     <td valign="top" width="50%" >
