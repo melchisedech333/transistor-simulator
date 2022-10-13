@@ -100,20 +100,20 @@ O código acima realiza o seguinte esquema lógico:
 
 <b>Obs:</b> o transistor do tipo N colocado da saída do CMOS (P e N) é apenas para demonstrar o funcionamento da porta lógica, fazendo com que ela acione um transistor que controla um LED. Como se pode notar, o LED liga e desliga conforme o estado de ligado/desligado da porta lógica.
 
-Utilizando as noções expostas acima, foi construído as portas abaixo.
+Utilizando as noções expostas acima, foi construído as seguintes portas:
 
 <table width="100%">
   <tr>
     <td valign="top" width="33%" >
-       NOT
+       <b>NOT</b>
        <img src="images/gate-not.png" width="100%" >
     </td>
     <td valign="top" width="33%" >
-       NAND
+       <b>NAND</b>
        <img src="images/gate-nand.png" width="100%" >
     </td>
     <td valign="top" width="33%" >
-       AND
+       <b>AND (NAND + NOT)</b>
        <img src="images/gate-and.png" width="100%" >
     </td>
   </tr>
@@ -121,11 +121,11 @@ Utilizando as noções expostas acima, foi construído as portas abaixo.
 <table width="100%">
   <tr>
     <td valign="top" width="50%" >
-       XOR (utilizando portas NAND)
+       <b>XOR (utilizando portas NAND)</b>
        <img src="images/gate-xor.png" width="100%" >
     </td>
     <td valign="top" width="50%" >
-       OR (utilizando portas NAND)
+       <b>OR (utilizando portas NAND)</b>
        <img src="images/gate-or.png" width="100%" >
     </td>
   </tr>
