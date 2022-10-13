@@ -121,11 +121,11 @@ Using the notions exposed above, the following ports were built:
 <table width="100%">
   <tr>
     <td valign="top" width="50%" >
-       <b>XOR (utilizando portas NAND)</b>
+       <b>XOR (using NAND gates)</b>
        <img src="images/gate-xor.png" width="100%" >
     </td>
     <td valign="top" width="50%" >
-       <b>OR (utilizando portas NAND)</b>
+       <b>OR (using NAND gates)</b>
        <img src="images/gate-or.png" width="100%" >
     </td>
   </tr>
