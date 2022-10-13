@@ -93,7 +93,6 @@ O código acima realiza o seguinte esquema lógico:
     <td width="50%" >
        Chave ligada
     </td>
-   </tr>
   </tr>
   <tr>
     <td width="50%" >
