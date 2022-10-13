@@ -1,10 +1,9 @@
 
 /**
- * Responsável por realizarf a criação das portas lógicas, criando um cpnjunto
- * de transistores, e um punhado de fios, e conectando os fios nos devidos 
- * terminais. Bem como realizando a conexão do Vdd (Power Supply) e do Ground.
- * Também é possível realizar a criação de novas portas lógicas a partir de 
- * outras portas já existentes.
+ * Responsible for creating the logic gates, creating a set of transistors, and 
+ * a handful of wires, and connecting the wires to the appropriate terminals. 
+ * As well as connecting the Vdd (Power Supply) and Ground. It is also possible
+ * to create new logic gates from other existing gates.
  */
 
 #include "gate-construction.h"

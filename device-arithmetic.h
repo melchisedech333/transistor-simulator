@@ -11,8 +11,8 @@
 #define ARITHMETIC_OPERATION_SUM    1
 
 /**
- * Deve existir um bit a mais no output, pois o 
- * carry (vai 1) as vezes ocupa esse bit.
+ * There must be an extra bit in the output, as 
+ * the carry (goes 1) sometimes occupies this bit.
  * 
  *  000000000 -> input1
  *  000000000 -> input2
@@ -23,7 +23,7 @@
 #define DEVICE_OUTPUT_SIZE         10
 
 typedef struct device_arithmetic_s {
-    char input1 [DEVICE_INPUT_SIZE  + 1]; // '\0' para string.
+    char input1 [DEVICE_INPUT_SIZE  + 1]; // '\0' string.
     char input2 [DEVICE_INPUT_SIZE  + 1];
     char output [DEVICE_OUTPUT_SIZE + 1];
     

@@ -3,15 +3,9 @@
  * I Love Jesus <3
  * The Network is the Machine.
  * 
- * Este código é responsável por apurar o estado da questão em relação aos
- * transistores. Ou seja, ele simula o equivalente a existência de uma diferença
- * de potencial no circuito, fazendo com que as cargas elétricas saiam do Vdd, 
- * e vão em direção ao Ground. A tensão utiliza é simbólica, e para deixar mais
- * simplificado as coisas usei os valores 1 e 0, onde 0 é desligado (0 Volt)
- * e 1 é ligado (1 Volt). Desta maneira a energia percorre o circuito e assim
- * vão sendo calculados os valores dos transistores em relação a entrada de dados
- * no gate, source e drain (levando em conta os tipos N e P). Em resumo: os valores
- * dos transistores são apurados, bem como os valores das interfaces dos gates.
+ * This code performs the processing of the logic gates and consequently the 
+ * transistors. Making the values generated in its operations resemble voltages 
+ * and electrical currents applied to the circuit.
  */
 
 #include "gate-machine.h"
