@@ -97,7 +97,7 @@ The code above performs the following logical scheme:
   </tr>
 </table>
 
-<b>Note:</b> the N-type transistor placed from the CMOS output (P and N) is just to demonstrate the operation of the logic gate, causing it to drive a transistor that controls an LED. As you can see, the LED turns on and off according to the on/off state of the logic port.
+<b>Note:</b> the N-type transistor placed at the CMOS output (P and N) is just to demonstrate the operation of the logic gate, causing it to drive a transistor that controls an LED. As you can see, the LED turns on and off according to the on/off state of the logic port.
 
 Using the notions exposed above, the following ports were built:
 
