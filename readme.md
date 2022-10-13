@@ -84,6 +84,7 @@ add_wire(first_n(), PIN_TRANSISTOR_SOURCE, GATE_PIN_GROUND, 0);
 Observe que o <b>Vdd</b> (que representa o positivo) é a origem do primeiro fio conectado, e o <b>Ground</b> é o último.
 
 O código acima realiza o seguinte esquema lógico:
+
 <table width="100%">
   <tr>
     <td width="50%" >Chave desligada</td>
@@ -98,6 +99,35 @@ O código acima realiza o seguinte esquema lógico:
 </table>
 
 <b>Obs:</b> o transistor do tipo N colocado da saída do CMOS (P e N) é apenas para demonstrar o funcionamento da porta lógica, fazendo com que ela acione um transistor que controla um LED. Como se pode notar, o LED liga e desliga conforme o estado de ligado/desligado da porta lógica.
+
+Utilizando as noções expostas acima, foi construído as portas abaixo.
+
+<table width="100%">
+  <tr>
+    <td>
+       NOT
+       <img src="images/not-1.png" width="100%" >
+    </td>
+    <td>
+       NAND
+       <img src="images/not-1.png" width="100%" >
+    </td>
+    <td>
+       XOR
+       <img src="images/not-1.png" width="100%" >
+    </td>
+  </tr>
+  <tr>
+    <td>
+       AND
+       <img src="images/not-1.png" width="100%" >
+    </td>
+    <td>
+       OR
+       <img src="images/not-1.png" width="100%" >
+    </td>
+  </tr>
+</table>
 
 <br>
 
