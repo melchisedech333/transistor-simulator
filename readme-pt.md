@@ -64,7 +64,7 @@ GATE | SOURCE | DRAIN
 
 <br>
 
-Utilizando os transistores com a lógica acima, é criado canais de comunicação entre eles, para que assim sejam criadas as portas lógicas. Ou seja, para realizar a comunicação eu criei os equivalentes aos fios que conectam os canais dos transistores, como demonstra o código abaixo na criação da porta lógica <b>NOT</b> (para ver o código completo acesse <b>[gate-construction.c](gate-construction.c)</b>).
+Utilizando os transistores com a lógica acima, é criado canais de comunicação entre eles, para que assim sejam criadas as portas lógicas. Ou seja, para realizar a comunicação eu criei os equivalentes aos fios que conectam os canais dos transistores, como demonstra o código abaixo na criação da porta lógica <b>NOT</b> (para ver o código completo acesse <b>[gate-construction.c](source/gate-construction.c)</b>).
 
 ```c
 // Cria dois transistores, um do tipo P, outro do tipo N.
@@ -134,7 +134,7 @@ Utilizando as noções expostas acima, foi construído as seguintes portas:
 
 <br>
 
-O código responsável por realizar o processamento das portas lógicas e dos transistores é o [gate-machine.c](gate-machine.c).
+O código responsável por realizar o processamento das portas lógicas e dos transistores é o [gate-machine.c](source/gate-machine.c).
 
 <br>
 
@@ -144,7 +144,7 @@ Utilizando todas estas coisas foi possível construir um mecanismo <b>Half Adder
 
 <br>
 
-Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithmetic.c](device-arithmetic.c), onde ali foi feito o mecanismo do <b>Half Adder</b> para ser utilizado no algoritmo da soma binária implementado na função <b>process_sum()</b>.
+Para maiores detalhes você pode analisar o algoritmo no arquivo [device-arithmetic.c](source/device-arithmetic.c), onde ali foi feito o mecanismo do <b>Half Adder</b> para ser utilizado no algoritmo da soma binária implementado na função <b>process_sum()</b>.
 
 <br>
 

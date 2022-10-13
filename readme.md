@@ -64,7 +64,7 @@ GATE | SOURCE | DRAIN
 
 <br>
 
-Using the transistors with the above logic, communication channels are created between them, so that the logic gates are created. That is, to carry out the communication I created the equivalent of the wires that connect the transistor channels, as shown in the code below in the creation of the <b>NOT</b> logic gate (to see the complete code, access <b>[gate -construction.c](gate-construction.c)</b>).
+Using the transistors with the above logic, communication channels are created between them, so that the logic gates are created. That is, to carry out the communication I created the equivalent of the wires that connect the transistor channels, as shown in the code below in the creation of the <b>NOT</b> logic gate (to see the complete code, access <b>[gate -construction.c](source/gate-construction.c)</b>).
 
 ```c
 // Creates two transistors, one P-type, one N-type.
@@ -133,7 +133,7 @@ Using the notions exposed above, the following ports were built:
 
 <br>
 
-The code responsible for processing the logic gates and transistors is [gate-machine.c](gate-machine.c).
+The code responsible for processing the logic gates and transistors is [gate-machine.c](source/gate-machine.c).
 
 <br>
 
@@ -143,7 +143,7 @@ Using all these things it was possible to build a <b>Half Adder</b> mechanism, s
 
 <br>
 
-For more details you can analyze the algorithm in the file [device-arithmetic.c](device-arithmetic.c), where the <b>Half Adder</b> mechanism was created to be used in the implemented binary sum algorithm in the <b>process_sum()</b> function.
+For more details you can analyze the algorithm in the file [device-arithmetic.c](source/device-arithmetic.c), where the <b>Half Adder</b> mechanism was created to be used in the implemented binary sum algorithm in the <b>process_sum()</b> function.
 
 <br>
 
