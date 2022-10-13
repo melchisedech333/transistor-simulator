@@ -48,7 +48,46 @@ Em relação ao Drain e Source, quando o valor está como 0 (zero), significa qu
 
 <br>
 
+<b>P-TYPE:</b>
 
+Em um transistor do tipo P, a corrente elétrica flui do Source em direção ao Drain.
+
+```
+       ------------->
+GATE | SOURCE | DRAIN
+---------------------
+0    | 0      | 0
+1    | 0      | 0
+0    | 1      | 1
+1    | 1      | 0
+```
+
+<br>
+
+Utilizando os transistores com a lógica acima, é criado canais de comunicação entre eles, para que assim sejam criadas as portas lógicas. Ou seja, para realizar a comunicação eu criei os equivalentes aos fios que conectam os canais dos transistores, como demonstra o código abaixo na criação da porta lógica "NOT" (para ver o código completo acesso <b>gate-construction.c</b>).
+
+```c
+// Cria dois transistores, um do tipo P, outro do tipo N.
+// O primeiro da lista é o transistor do tipo P.
+gate->transistors = get_transistors(1, 1);
+
+// Adiciona os fios para realizar a comunicação entre os canais dos transistores.
+add_wire(GATE_PIN_VDD, 0, first_p(), PIN_TRANSISTOR_SOURCE);
+add_wire(GATE_PIN_INPUT1, 0, first_p(), PIN_TRANSISTOR_GATE);
+add_wire(first_p(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
+add_wire(GATE_PIN_INPUT1, 0, first_n(), PIN_TRANSISTOR_GATE);
+add_wire(first_n(), PIN_TRANSISTOR_DRAIN, GATE_PIN_OUTPUT, 0);
+add_wire(first_n(), PIN_TRANSISTOR_SOURCE, GATE_PIN_GROUND, 0);
+```
+
+O código acima realiza o seguinte esquema lógico:
+<table>
+  <tr>
+    <td><img src="images/not-1.png" ></td>
+    <td><img src="images/not-2.png" ></td>
+   </tr>
+  </tr>
+</table>
 
 <br>
 
